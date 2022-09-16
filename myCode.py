@@ -55,13 +55,37 @@ def find_most_similar(query_str, corpus_embedding):
     most_similar_idx, matching_score = np.argmax(cos_scores), np.max(cos_scores)
     return most_similar_idx, matching_score
 
-# define query task
-task = 'look at the clock under the lamp'
-# find most relevant example
-example_idx, _ = find_most_similar(task, example_task_embedding)
-example = available_examples[example_idx]
-curr_prompt = f'{example}\n\nTask: {task}'
+def calculate_pddl_similarity(p1, p2):
+    pddl_scores = {}
+    for p, t in p1.items():
+        pddl_scores[p] = p1[p] == p2[p]
+    return pddl_score
 
-print('Task: ', task)
-print('Found example: ', example)
-print('Final prompt: ', curr_prompt)
+with open('data/task2param.json', r) as f:
+    task2param = json.load(f)
+
+acc = {}
+for split in ['valid_seen', 'valid_unseen']:
+    match_scores = []
+    pddl_scores = []
+    data_path = '../alfred/data/json_2.1.0/{sp}'.format(sp=split)
+    for ep in os.listdir(data_path):
+        for trial in os.listdir(os.path.join(data_path, ep)):
+            with open(os.path.join(data_path, ep, trial, 'traj_data.json'), 'r') as f:
+                data = json.load(f)
+            anns = data['turk_annotations']['anns']
+            pddl = data['pddl_params']
+            for ann in anns:
+                task = ann['task_desc']
+                example_idx, matching_score = find_most_similar(task, example_task_embedding)
+                example = available_examples[example_idx]
+                accuray = calculate_pddl_similarity(pddl, task2parma[example])
+                match_scores.append(matching_score)
+                for p, s in accuray.items():
+                    pddl_scores[p].append(s)
+    for p, s in pddl_scores.items():
+        pddl_scores[p] = np.mean(s)
+    acc[split] = {'matching_acc': np.mean(matching_score), 'pddl_acc': pddl_scores}
+
+with open('result.json', 'w') as f:
+    json.dump(acc, f)
