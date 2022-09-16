@@ -1,4 +1,3 @@
-import openai
 import numpy as np
 import torch
 from sentence_transformers import SentenceTransformer
@@ -35,12 +34,12 @@ sampling_params = \
 translation_lm = SentenceTransformer(translation_lm_id).to(device)
 
 # create action embeddings using Translated LM
-with open('available_actions.json', 'r') as f:
+with open('src/available_actions.json', 'r') as f:
     action_list = json.load(f)
 action_list_embedding = translation_lm.encode(action_list, batch_size=512, convert_to_tensor=True, device=device)  # lower batch_size if limited by GPU memory
 
 # create example task embeddings using Translated LM
-with open('available_examples.json', 'r') as f:
+with open('src/available_examples.json', 'r') as f:
     available_examples = json.load(f)
 example_task_list = [example.split('\n')[0] for example in available_examples]  # first line contains the task name
 example_task_embedding = translation_lm.encode(example_task_list, batch_size=512, convert_to_tensor=True, device=device)  # lower batch_size if limited by GPU memory
@@ -60,3 +59,7 @@ task = 'Make breakfast'
 example_idx, _ = find_most_similar(task, example_task_embedding)
 example = available_examples[example_idx]
 curr_prompt = f'{example}\n\nTask: {task}'
+
+print('Task: ', task)
+print('Found example: ', example)
+print('Final prompt: ', curr_prompt)
