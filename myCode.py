@@ -3,8 +3,10 @@ import torch
 from sentence_transformers import SentenceTransformer
 from sentence_transformers import util as st_utils
 import json
-from torch.utils.tensorboard import SummaryWriter
-writer = SummaryWriter()
+import os
+# from torch.utils.tensorboard import SummaryWriter
+
+# writer = SummaryWriter()
 
 GPU = 0
 if torch.cuda.is_available():
@@ -59,15 +61,15 @@ def calculate_pddl_similarity(p1, p2):
     pddl_scores = {}
     for p, t in p1.items():
         pddl_scores[p] = p1[p] == p2[p]
-    return pddl_score
+    return pddl_scores
 
-with open('data/task2param.json', r) as f:
+with open('data/task2param.json', 'r') as f:
     task2param = json.load(f)
 
 acc = {}
 for split in ['valid_seen', 'valid_unseen']:
     match_scores = []
-    pddl_scores = []
+    pddl_scores = {}
     data_path = '../alfred/data/json_2.1.0/{sp}'.format(sp=split)
     for ep in os.listdir(data_path):
         for trial in os.listdir(os.path.join(data_path, ep)):
@@ -78,14 +80,19 @@ for split in ['valid_seen', 'valid_unseen']:
             for ann in anns:
                 task = ann['task_desc']
                 example_idx, matching_score = find_most_similar(task, example_task_embedding)
-                example = available_examples[example_idx]
-                accuray = calculate_pddl_similarity(pddl, task2parma[example])
+                # print(available_examples[example_idx])
+                example = available_examples[example_idx].split('\n')[0].split(':')[1].strip()
+                # print(example)
+                accuray = calculate_pddl_similarity(pddl, task2param[example])
                 match_scores.append(matching_score)
                 for p, s in accuray.items():
-                    pddl_scores[p].append(s)
+                    if p in pddl_scores:
+                        pddl_scores[p].append(s)
+                    else:
+                        pddl_scores[p] = [s]
     for p, s in pddl_scores.items():
-        pddl_scores[p] = np.mean(s)
-    acc[split] = {'matching_acc': np.mean(matching_score), 'pddl_acc': pddl_scores}
+        pddl_scores[p] = np.mean(s).astype(float)
+    acc[split] = {'matching_acc': np.mean(matching_score).astype(float), 'pddl_acc': pddl_scores}
 
 with open('result.json', 'w') as f:
     json.dump(acc, f)

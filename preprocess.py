@@ -18,11 +18,11 @@ for ep in os.listdir(original_data_path):
         for ann in annList:
             actions = [re.sub("r[^a-z0-9]", "", a.lower()) for a in ann['high_descs']]
             actionList.extend(actions)
-            task = ann['task_desc']
+            task = ann['task_desc'].lstrip('\n\b')
             step = ''
             for i, action in enumerate(ann['high_descs']):
                 step += 'Step {}: {}\n'.format(i+1, action)
-            ex = 'Task: {task}\n{step}'.format(task=task, step=step[:-2])
+            ex = 'Task: {task}\n{step}'.format(task=task, step=step.rstrip(' \n'))
             examples.append(ex)
 with open(aciton_path, 'w+') as f:
     json.dump(actionList, f)
