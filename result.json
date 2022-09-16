@@ -6,7 +6,8 @@
             "object_sliced": 0.9780487804878049,
             "object_target": 0.8548780487804878,
             "parent_target": 0.8353658536585366,
-            "toggle_target": 0.9829268292682927
+            "toggle_target": 0.9829268292682927,
+            "all": 0.6792682926829269
         }
     },
     "valid_unseen": {
@@ -16,7 +17,8 @@
             "object_sliced": 0.9634591961023142,
             "object_target": 0.8404384896467723,
             "parent_target": 0.8477466504263094,
-            "toggle_target": 0.9549330085261876
+            "toggle_target": 0.9549330085261876,
+            "all": 0.630937880633374
         }
     }
 }

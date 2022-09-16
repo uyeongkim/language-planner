@@ -59,8 +59,12 @@ def find_most_similar(query_str, corpus_embedding):
 
 def calculate_pddl_similarity(p1, p2):
     pddl_scores = {}
+    all = True
     for p, t in p1.items():
         pddl_scores[p] = p1[p] == p2[p]
+        if all and not pddl_scores[p]:
+            all = False
+    pddl_scores['all'] = all
     return pddl_scores
 
 with open('data/task2param.json', 'r') as f:
@@ -95,4 +99,4 @@ for split in ['valid_seen', 'valid_unseen']:
     acc[split] = {'matching_acc': np.mean(matching_score).astype(float), 'pddl_acc': pddl_scores}
 
 with open('result.json', 'w') as f:
-    json.dump(acc, f)
+    json.dump(acc, f, indent=4)
