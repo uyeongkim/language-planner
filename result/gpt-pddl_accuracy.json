@@ -1,0 +1,18 @@
+{
+    "valid_seen": {
+        "mrecep_target": 0.888,
+        "object_sliced": 0.93,
+        "object_target": 0.512,
+        "parent_target": 0.499,
+        "toggle_target": 0.948,
+        "all": 0.133
+    },
+    "valid_unseen": {
+        "mrecep_target": 0.896,
+        "object_sliced": 0.922,
+        "object_target": 0.508,
+        "parent_target": 0.533,
+        "toggle_target": 0.924,
+        "all": 0.138
+    }
+}

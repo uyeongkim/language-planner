@@ -1245,6 +1245,13 @@
         "parent_target": "Microwave",
         "toggle_target": ""
     },
+    "": {
+        "mrecep_target": "",
+        "object_sliced": false,
+        "object_target": "Box",
+        "parent_target": "ArmChair",
+        "toggle_target": ""
+    },
     "Put a knife on a plate, on the counter.": {
         "mrecep_target": "Plate",
         "object_sliced": false,
@@ -41572,13 +41579,6 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "\bPut cold lettuce in the sink.": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "Lettuce",
-        "parent_target": "SinkBasin",
-        "toggle_target": ""
-    },
     "Put the chilled cabbage in the sink": {
         "mrecep_target": "",
         "object_sliced": false,
@@ -54767,7 +54767,14 @@
         "parent_target": "CoffeeTable",
         "toggle_target": ""
     },
-    "move the watch to  the table.\n move  the watch to the table in the center of the room": {
+    "move the watch to  the table.": {
+        "mrecep_target": "",
+        "object_sliced": false,
+        "object_target": "Watch",
+        "parent_target": "CoffeeTable",
+        "toggle_target": ""
+    },
+    "move  the watch to the table in the center of the room": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Watch",
@@ -85014,7 +85021,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "\bPut two sets of keys in the top drawer of the desk.": {
+    "Put two sets of keys in the top drawer of the desk.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "KeyChain",
