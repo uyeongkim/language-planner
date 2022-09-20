@@ -6,7 +6,6 @@ This is done by finding the most similar task description in the ALFRED train da
 import json
 import os
 import argparse
-from selectors import EpollSelector
 import numpy as np
 import torch
 from sentence_transformers import SentenceTransformer
@@ -21,6 +20,7 @@ EXAMPLE_TASK_LIST = [example.split('\n')[0].split(':')[1].strip() for example in
 with open('data/supported_sentence_transformer.txt', 'r', encoding='utf-8') as f:
     _SUPPORTED = f.read().splitlines()
 SUPPORTED_MODEL = [model.split('\n')[0] for model in _SUPPORTED]
+SENTENCE_MATCH = {'gt': [], 'pred': []}
 
 def find_most_similar(query_str, corpus_embedding, translation_lm, supported = True):
     """helper function for finding similar sentence in a corpus given a query"""
@@ -50,6 +50,8 @@ def find_best_pddl(task, example_task_embedding, translation_lm):
         raise ValueError('Task description is empty')
     example_idx, _ = find_most_similar(task, example_task_embedding, translation_lm)
     example = EXAMPLE_TASK_LIST[example_idx]
+    SENTENCE_MATCH['gt'].append(example)
+    SENTENCE_MATCH['pred'].append(task)
     return TASK2PARAM[example]
 
 def save_pddl_match(example_task_embedding, translation_lm, filename='data/pddl_match.json'):
@@ -103,14 +105,10 @@ if __name__ == '__main__':
                 f.write(args.translation_lm + '\n')
             SUPPORTED_MODEL.append(args.translation_lm)
     except NameError:
-        print('model:{model} not in huggingface'.format(model=args.translation_lm))
-        if args.translation_lm == 'gpt2':
-            outputs = [gpt_encoder(task) for task in EXAMPLE_TASK_LIST]
-            example_task_embedding = torch.cat(outputs, dim=0)
-            translation_lm = gpt_encoder
-        else:
-            raise ValueError('model{model} not in huggingface'.format(model=args.translation_lm))
+        raise ValueError('model{model} not in huggingface'.format(model=args.translation_lm))
 
     # save matching pddl_params
-    save_pddl_match(example_task_embedding, filename='data/gpt-pddl_match.json', translation_lm=translation_lm)
+    save_pddl_match(example_task_embedding, filename='result/{}-pddl_match.json'.format(args.translation_lm), translation_lm=translation_lm)
+    with open('result/{}-sentence_match.json'.format(args.translation_lm), 'w') as f:
+        json.dump(SENTENCE_MATCH, f, indent=4)
     

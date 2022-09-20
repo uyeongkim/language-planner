@@ -20,7 +20,7 @@
         "parent_target": "",
         "toggle_target": "FloorLamp"
     },
-    "Put a pot containing a knife and slice of potato on a table. ": {
+    "Put a pot containing a knife and slice of potato on a table.": {
         "mrecep_target": "Pot",
         "object_sliced": true,
         "object_target": "Potato",
@@ -69,18 +69,18 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Place a pan containing sliced potato's on the table. ": {
+    "Place a pan containing sliced potato's on the table.": {
         "mrecep_target": "Pan",
         "object_sliced": true,
         "object_target": "Potato",
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Put a pot with a potato on the small table. ": {
-        "mrecep_target": "Pot",
-        "object_sliced": true,
+    "Put a pot with a potato on the small table.": {
+        "mrecep_target": "",
+        "object_sliced": false,
         "object_target": "Potato",
-        "parent_target": "DiningTable",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "Put a metal pot a potato slice in it on a white table.": {
@@ -107,7 +107,7 @@
     "Put the vases on the wooden shelf": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Cup",
+        "object_target": "Glassbottle",
         "parent_target": "Shelf",
         "toggle_target": ""
     },
@@ -128,7 +128,7 @@
     "To move two vases from the counter to the second from the bottom shelf of the shelf rack.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Cup",
+        "object_target": "Glassbottle",
         "parent_target": "Shelf",
         "toggle_target": ""
     },
@@ -143,13 +143,6 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "ButterKnife",
-        "parent_target": "Drawer",
-        "toggle_target": ""
-    },
-    "Put a cleaned knife in a drawer. ": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "Knife",
         "parent_target": "Drawer",
         "toggle_target": ""
     },
@@ -178,7 +171,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "CD",
-        "parent_target": "DiningTable",
+        "parent_target": "Shelf",
         "toggle_target": ""
     },
     "Turn a lamp on with a remote in hand.": {
@@ -220,7 +213,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Book",
-        "parent_target": "Desk",
+        "parent_target": "Bed",
         "toggle_target": ""
     },
     "Place a cooled mug on a coffee machine.": {
@@ -258,7 +251,7 @@
         "parent_target": "Dresser",
         "toggle_target": ""
     },
-    "Put two credit cards on a table. ": {
+    "Put two credit cards on a table.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "CreditCard",
@@ -279,14 +272,14 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "pick up apple, pick up knife, cut apple, place into fridge, remove, place onto table ": {
+    "pick up apple, pick up knife, cut apple, place into fridge, remove, place onto table": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Put a clean bar of soap under the sink. ": {
+    "Put a clean bar of soap under the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -297,7 +290,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
-        "parent_target": "Cabinet",
+        "parent_target": "Toilet",
         "toggle_target": ""
     },
     "drop a wet soap in the cupboard under the sink": {
@@ -315,9 +308,9 @@
         "toggle_target": ""
     },
     "place a clean plate down on the kitchen counter to the right of the sink": {
-        "mrecep_target": "Pot",
+        "mrecep_target": "Pan",
         "object_sliced": false,
-        "object_target": "Spatula",
+        "object_target": "ButterKnife",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
@@ -342,7 +335,7 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Move a chilled pot to the round table in the corner. ": {
+    "Move a chilled pot to the round table in the corner.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pan",
@@ -356,7 +349,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Put wet soap in the cabinet under the sink to the left. ": {
+    "Put wet soap in the cabinet under the sink to the left.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -374,14 +367,14 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Plate",
-        "parent_target": "SideTable",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "To heat a plate and place it on the kitchen table.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Plate",
-        "parent_target": "DiningTable",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "get a plate, warm it in the microwave and take it to the table.": {
@@ -391,7 +384,7 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Slice a potato with a knife in order to throw it away. ": {
+    "Slice a potato with a knife in order to throw it away.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Potato",
@@ -405,7 +398,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Throw out a microwaved slice of potato. ": {
+    "Throw out a microwaved slice of potato.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Potato",
@@ -419,7 +412,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Place the lotion on the sink underneath the cabinet. ": {
+    "Place the lotion on the sink underneath the cabinet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBottle",
@@ -430,7 +423,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBottle",
-        "parent_target": "Toilet",
+        "parent_target": "Cabinet",
         "toggle_target": ""
     },
     "Put a watch on a table.": {
@@ -441,7 +434,7 @@
         "toggle_target": ""
     },
     "put the watch on the table from the tv": {
-        "mrecep_target": "",
+        "mrecep_target": "Plate",
         "object_sliced": false,
         "object_target": "Watch",
         "parent_target": "SideTable",
@@ -454,7 +447,7 @@
         "parent_target": "CoffeeTable",
         "toggle_target": ""
     },
-    "Put one watch on the end tale. ": {
+    "Put one watch on the end tale.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Watch",
@@ -472,7 +465,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Watch",
-        "parent_target": "DiningTable",
+        "parent_target": "CoffeeTable",
         "toggle_target": ""
     },
     "look at the clock under the lamp": {
@@ -510,7 +503,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Put a heated mug on the coffee machine. ": {
+    "Put a heated mug on the coffee machine.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
@@ -545,7 +538,7 @@
         "parent_target": "Microwave",
         "toggle_target": ""
     },
-    "Cut an apple inside a pot. ": {
+    "Cut an apple inside a pot.": {
         "mrecep_target": "Pot",
         "object_sliced": true,
         "object_target": "Apple",
@@ -590,7 +583,7 @@
     "Move tissues from counter to toilet": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "SoapBar",
+        "object_target": "ToiletPaper",
         "parent_target": "Toilet",
         "toggle_target": ""
     },
@@ -636,7 +629,7 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Examine the rag by the light of the lamp on the desk. ": {
+    "Examine the rag by the light of the lamp on the desk.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cloth",
@@ -646,9 +639,9 @@
     "Examine a blue cloth by the light of a desk lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Plate",
+        "object_target": "Cloth",
         "parent_target": "",
-        "toggle_target": "FloorLamp"
+        "toggle_target": "DeskLamp"
     },
     "Put the cooked tomato slice on the kitchen island": {
         "mrecep_target": "",
@@ -682,14 +675,14 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cloth",
-        "parent_target": "Cart",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "Put a cleaned washcloth away in a cabinet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cloth",
-        "parent_target": "Drawer",
+        "parent_target": "Cabinet",
         "toggle_target": ""
     },
     "hold a pillow while turning on a lamp": {
@@ -772,8 +765,8 @@
     "Put a cold cup on a stand.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Bowl",
-        "parent_target": "CounterTop",
+        "object_target": "Cup",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "Put a chilled vase on the three tiered black table.": {
@@ -783,25 +776,25 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Put a heated apple on the table. ": {
+    "Put a heated apple on the table.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
-        "parent_target": "SideTable",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "Put a cooked apple on the table.": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Apple",
-        "parent_target": "SideTable",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "Put a heated apple on the table by the stove.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
-        "parent_target": "SideTable",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "Slice an apple or vegetable followed by rinsing it": {
@@ -825,7 +818,7 @@
         "parent_target": "SideTable",
         "toggle_target": ""
     },
-    "Put a clean apple on the table. ": {
+    "Put a clean apple on the table.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
@@ -874,7 +867,7 @@
         "parent_target": "Dresser",
         "toggle_target": ""
     },
-    "Place an apple slice into the refrigerator on the bottom shelf. ": {
+    "Place an apple slice into the refrigerator on the bottom shelf.": {
         "mrecep_target": "Plate",
         "object_sliced": true,
         "object_target": "Apple",
@@ -895,7 +888,7 @@
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "To move two bars of soap to the back of the toilet. ": {
+    "To move two bars of soap to the back of the toilet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -931,10 +924,10 @@
         "toggle_target": ""
     },
     "To wash a ladle and place it on the counter by the sink.": {
-        "mrecep_target": "",
+        "mrecep_target": "Bowl",
         "object_sliced": false,
         "object_target": "Ladle",
-        "parent_target": "CounterTop",
+        "parent_target": "SinkBasin",
         "toggle_target": ""
     },
     "Put a spray bottle on top of the toilet's water tank.": {
@@ -958,7 +951,7 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    " put the spray bottle on the back of the toilet": {
+    "put the spray bottle on the back of the toilet": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SprayBottle",
@@ -968,8 +961,8 @@
     "knock an empty toilet paper roll off of the back of the toilet while placing a spray bottle next to it": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "ToiletPaper",
-        "parent_target": "Toilet",
+        "object_target": "SprayBottle",
+        "parent_target": "GarbageCan",
         "toggle_target": ""
     },
     "Place a spray bottle on a toilet tank.": {
@@ -1014,7 +1007,7 @@
         "parent_target": "Desk",
         "toggle_target": ""
     },
-    "Move the bottles to the desk. ": {
+    "Move the bottles to the desk.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "WineBottle",
@@ -1031,15 +1024,15 @@
     "Move and empty box and newspaper to the TV stand": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Newspaper",
-        "parent_target": "Sofa",
+        "object_target": "Box",
+        "parent_target": "Dresser",
         "toggle_target": ""
     },
     "Take the box from the couch, put it on the dresser": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Box",
-        "parent_target": "Dresser",
+        "parent_target": "Sofa",
         "toggle_target": ""
     },
     "Place a clean knife in a drawer.": {
@@ -1052,7 +1045,7 @@
     "Put a rinsed off knife in the drawer.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Knife",
+        "object_target": "ButterKnife",
         "parent_target": "Drawer",
         "toggle_target": ""
     },
@@ -1072,8 +1065,8 @@
     },
     "Place the cool slice apple on the small black table.": {
         "mrecep_target": "",
-        "object_sliced": true,
-        "object_target": "Apple",
+        "object_sliced": false,
+        "object_target": "Potato",
         "parent_target": "SideTable",
         "toggle_target": ""
     },
@@ -1106,10 +1099,10 @@
         "toggle_target": ""
     },
     "take a dish to the table to put tissue box on it": {
-        "mrecep_target": "",
+        "mrecep_target": "Plate",
         "object_sliced": false,
         "object_target": "TissueBox",
-        "parent_target": "SideTable",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "Grab the plate from coffee table, put it on dining table, put the tissue box in it": {
@@ -1126,7 +1119,7 @@
         "parent_target": "BathtubBasin",
         "toggle_target": ""
     },
-    "Put a towel in the bath tub. ": {
+    "Put a towel in the bath tub.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "HandTowel",
@@ -1154,7 +1147,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Put two spatulas in the drawer by the stove. ": {
+    "Put two spatulas in the drawer by the stove.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Spatula",
@@ -1168,14 +1161,14 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Slice bread and chill it in the fridge. ": {
+    "Slice bread and chill it in the fridge.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Bread",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "slice a loaf of bread put the slice on top of the table ": {
+    "slice a loaf of bread put the slice on top of the table": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Bread",
@@ -1183,10 +1176,10 @@
         "toggle_target": ""
     },
     "Retrieve green vegetable from table, wash it in the sink, put it on the right side counter": {
-        "mrecep_target": "Pot",
+        "mrecep_target": "Bowl",
         "object_sliced": false,
-        "object_target": "DishSponge",
-        "parent_target": "DiningTable",
+        "object_target": "Spoon",
+        "parent_target": "SinkBasin",
         "toggle_target": ""
     },
     "rinse off lettuce and put it down on the counter top": {
@@ -1196,7 +1189,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put cleaned lettuce on the counter, right of the sink. ": {
+    "Put cleaned lettuce on the counter, right of the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Lettuce",
@@ -1224,7 +1217,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Put a wet sponge on the metal rack. ": {
+    "Put a wet sponge on the metal rack.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "DishSponge",
@@ -1266,7 +1259,7 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Slice the apple in the pan ": {
+    "Slice the apple in the pan": {
         "mrecep_target": "Pan",
         "object_sliced": true,
         "object_target": "Apple",
@@ -1274,7 +1267,7 @@
         "toggle_target": ""
     },
     "Slice an apple in a pan on a shelf.": {
-        "mrecep_target": "Pan",
+        "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
         "parent_target": "CounterTop",
@@ -1308,7 +1301,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put a chilled pan on the stove. ": {
+    "Put a chilled pan on the stove.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pot",
@@ -1338,12 +1331,12 @@
     },
     "Put a chilled head of lettuce on the counter.": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Lettuce",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put chilled lettuce on the counter. ": {
+    "Put chilled lettuce on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Lettuce",
@@ -1364,11 +1357,11 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "to pick up a coffee mug and put it on the night stand ": {
-        "mrecep_target": "Mug",
+    "to pick up a coffee mug and put it on the night stand": {
+        "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Pen",
-        "parent_target": "SideTable",
+        "object_target": "Mug",
+        "parent_target": "CoffeeMachine",
         "toggle_target": ""
     },
     "Place a CD on a table.": {
@@ -1386,9 +1379,9 @@
         "toggle_target": ""
     },
     "Put a mug on the stand.": {
-        "mrecep_target": "",
+        "mrecep_target": "Mug",
         "object_sliced": false,
-        "object_target": "Mug",
+        "object_target": "Spoon",
         "parent_target": "SideTable",
         "toggle_target": ""
     },
@@ -1396,7 +1389,7 @@
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
-        "parent_target": "SinkBasin",
+        "parent_target": "Fridge",
         "toggle_target": ""
     },
     "Put a cold slice of tomato on top of a sponge on a counter.": {
@@ -1413,7 +1406,7 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Put a tomato slice on top of a green sponge in the sink. ": {
+    "Put a tomato slice on top of a green sponge in the sink.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
@@ -1455,7 +1448,7 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Move a knife to the kitchen sink. ": {
+    "Move a knife to the kitchen sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Knife",
@@ -1490,7 +1483,7 @@
         "parent_target": "",
         "toggle_target": "FloorLamp"
     },
-    "Examine the remote by the light of the lamp.\n": {
+    "Examine the remote by the light of the lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "RemoteControl",
@@ -1592,7 +1585,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Spoon",
-        "parent_target": "DiningTable",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "Rinse off a laddle and move it to the table.": {
@@ -1644,7 +1637,7 @@
         "parent_target": "Sofa",
         "toggle_target": ""
     },
-    "move the book to the couch ": {
+    "move the book to the couch": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Book",
@@ -1679,7 +1672,7 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Put wet soap on the toilet tank lid. ": {
+    "Put wet soap on the toilet tank lid.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -1693,7 +1686,7 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Put a bar of soap on the back of the toilet. ": {
+    "Put a bar of soap on the back of the toilet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -1721,7 +1714,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "To move two bars of soap to the black bin. ": {
+    "To move two bars of soap to the black bin.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -1756,14 +1749,14 @@
         "parent_target": "ArmChair",
         "toggle_target": ""
     },
-    "Put one remote on a chair. ": {
+    "Put one remote on a chair.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "RemoteControl",
         "parent_target": "ArmChair",
         "toggle_target": ""
     },
-    "Put an egg in the microwave. ": {
+    "Put an egg in the microwave.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Potato",
@@ -1796,13 +1789,6 @@
         "object_sliced": false,
         "object_target": "ButterKnife",
         "parent_target": "DiningTable",
-        "toggle_target": ""
-    },
-    "Put a chilled apple in the microwave. ": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "Apple",
-        "parent_target": "Microwave",
         "toggle_target": ""
     },
     "Put a chilled apple in the microwave.": {
@@ -1945,7 +1931,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Move the spray bottles to the cabinet under the sink. ": {
+    "Move the spray bottles to the cabinet under the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SprayBottle",
@@ -1980,7 +1966,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "To move two spray bottles to the cabinet below the sink on the right side. ": {
+    "To move two spray bottles to the cabinet below the sink on the right side.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SprayBottle",
@@ -2022,7 +2008,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put a cooled tomato on the counter. ": {
+    "Put a cooled tomato on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Tomato",
@@ -2072,14 +2058,14 @@
         "toggle_target": ""
     },
     "Place a plate with a cut apple slice in the fridge": {
-        "mrecep_target": "Plate",
+        "mrecep_target": "Pot",
         "object_sliced": true,
         "object_target": "Apple",
         "parent_target": "Fridge",
         "toggle_target": ""
     },
     "Put a slice of apple on a plate in the fridge.": {
-        "mrecep_target": "Plate",
+        "mrecep_target": "Pot",
         "object_sliced": true,
         "object_target": "Apple",
         "parent_target": "Fridge",
@@ -2092,11 +2078,11 @@
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "put the cup with the knife on the table ": {
-        "mrecep_target": "Cup",
+    "put the cup with the knife on the table": {
+        "mrecep_target": "Mug",
         "object_sliced": false,
-        "object_target": "ButterKnife",
-        "parent_target": "DiningTable",
+        "object_target": "Knife",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "Put a knife in a blue container onto the black table in the corner.": {
@@ -2130,7 +2116,7 @@
     "place a rag inside the tub": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "HandTowel",
+        "object_target": "Cloth",
         "parent_target": "BathtubBasin",
         "toggle_target": ""
     },
@@ -2162,7 +2148,7 @@
         "parent_target": "BathtubBasin",
         "toggle_target": ""
     },
-    "rinse the rag from the tub then put it back ": {
+    "rinse the rag from the tub then put it back": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cloth",
@@ -2177,14 +2163,14 @@
         "toggle_target": ""
     },
     "Put away spatula in the container on black table": {
-        "mrecep_target": "",
+        "mrecep_target": "Pan",
         "object_sliced": false,
-        "object_target": "Knife",
-        "parent_target": "Drawer",
+        "object_target": "Spatula",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "Place a container with a spatula in it on a table.": {
-        "mrecep_target": "Plate",
+        "mrecep_target": "Bowl",
         "object_sliced": false,
         "object_target": "Spatula",
         "parent_target": "DiningTable",
@@ -2197,7 +2183,7 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Put the remote in the box, and put the box on the coffee table. ": {
+    "Put the remote in the box, and put the box on the coffee table.": {
         "mrecep_target": "Box",
         "object_sliced": false,
         "object_target": "RemoteControl",
@@ -2218,18 +2204,18 @@
         "parent_target": "CoffeeTable",
         "toggle_target": ""
     },
-    "Put a wine bottle on the second from the bottom shelf, in the kitchen. ": {
+    "Put a wine bottle on the second from the bottom shelf, in the kitchen.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "WineBottle",
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Put away the bottle of wine ": {
+    "Put away the bottle of wine": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "WineBottle",
-        "parent_target": "GarbageCan",
+        "parent_target": "Cabinet",
         "toggle_target": ""
     },
     "Move a wine bottle to the shelf": {
@@ -2345,13 +2331,13 @@
         "toggle_target": ""
     },
     "Put a large metal pan with an apple slice in it in the fridge.": {
-        "mrecep_target": "Plate",
+        "mrecep_target": "Pot",
         "object_sliced": true,
-        "object_target": "Apple",
+        "object_target": "Potato",
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "Move a pan with a slice of roll in it to the fridge. ": {
+    "Move a pan with a slice of roll in it to the fridge.": {
         "mrecep_target": "Pot",
         "object_sliced": true,
         "object_target": "Apple",
@@ -2373,14 +2359,14 @@
         "toggle_target": ""
     },
     "Place an apple slice in a square pan, place both in fridge": {
-        "mrecep_target": "Bowl",
+        "mrecep_target": "Pot",
         "object_sliced": true,
         "object_target": "Apple",
         "parent_target": "Fridge",
         "toggle_target": ""
     },
     "Put a pan whit an apple in it in the fridge.": {
-        "mrecep_target": "",
+        "mrecep_target": "Pan",
         "object_sliced": true,
         "object_target": "Apple",
         "parent_target": "Fridge",
@@ -2397,7 +2383,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "KeyChain",
-        "parent_target": "Sofa",
+        "parent_target": "Dresser",
         "toggle_target": ""
     },
     "Put two sets of keys on the shelf.": {
@@ -2422,7 +2408,7 @@
         "toggle_target": ""
     },
     "Place a pan containing sliced tomato in the refrigerator.": {
-        "mrecep_target": "Pot",
+        "mrecep_target": "Pan",
         "object_sliced": true,
         "object_target": "Tomato",
         "parent_target": "Fridge",
@@ -2456,7 +2442,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put a knife on the counter. ": {
+    "Put a knife on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Knife",
@@ -2466,8 +2452,8 @@
     "move a knife over to the microwaves cabinet": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Plate",
-        "parent_target": "Cabinet",
+        "object_target": "Knife",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "To wash an knife and place it on the kitchen table.": {
@@ -2488,7 +2474,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Knife",
-        "parent_target": "SideTable",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "Put two sets of keys on the couch.": {
@@ -2540,7 +2526,7 @@
         "parent_target": "Desk",
         "toggle_target": ""
     },
-    "Move books in the room over to the desk. ": {
+    "Move books in the room over to the desk.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Book",
@@ -2551,7 +2537,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Book",
-        "parent_target": "Desk",
+        "parent_target": "Sofa",
         "toggle_target": ""
     },
     "Put two books on the desk.": {
@@ -2575,7 +2561,7 @@
         "parent_target": "Bed",
         "toggle_target": ""
     },
-    "To take the toilet paper on top of the toilet and place it in a drawer. ": {
+    "To take the toilet paper on top of the toilet and place it in a drawer.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "ToiletPaper",
@@ -2613,7 +2599,7 @@
     "Turn a light on while holding a white object.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Bowl",
+        "object_target": "Statue",
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
@@ -2680,7 +2666,7 @@
         "parent_target": "Dresser",
         "toggle_target": ""
     },
-    "Put a pencil on the dresser. ": {
+    "Put a pencil on the dresser.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pencil",
@@ -2698,7 +2684,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Spoon",
-        "parent_target": "DiningTable",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "Place a clean ladle on a table.": {
@@ -2722,7 +2708,7 @@
         "parent_target": "",
         "toggle_target": "FloorLamp"
     },
-    "To pick up a laptop before turning off a lamp. ": {
+    "To pick up a laptop before turning off a lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Laptop",
@@ -2764,7 +2750,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Put 2 yellow knives from the round black table to the drawer of the cabinet with a toaster. ": {
+    "Put 2 yellow knives from the round black table to the drawer of the cabinet with a toaster.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Knife",
@@ -2792,7 +2778,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Put two knives in a drawer. ": {
+    "Put two knives in a drawer.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Knife",
@@ -2803,7 +2789,7 @@
         "mrecep_target": "Box",
         "object_sliced": false,
         "object_target": "RemoteControl",
-        "parent_target": "ArmChair",
+        "parent_target": "Sofa",
         "toggle_target": ""
     },
     "Place the remote in the box on the brown bench.": {
@@ -2817,7 +2803,7 @@
         "mrecep_target": "Box",
         "object_sliced": false,
         "object_target": "RemoteControl",
-        "parent_target": "Sofa",
+        "parent_target": "ArmChair",
         "toggle_target": ""
     },
     "wash the butter knife and put it back on the counter": {
@@ -2830,7 +2816,7 @@
     "Place a cleaned knife on a counter top.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Knife",
+        "object_target": "ButterKnife",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
@@ -2848,7 +2834,7 @@
         "parent_target": "SideTable",
         "toggle_target": ""
     },
-    "Put a heated mug on the small black table, left of the tomato. ": {
+    "Put a heated mug on the small black table, left of the tomato.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Tomato",
@@ -2858,8 +2844,8 @@
     "Put a microwaved cup on a black table.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Cup",
-        "parent_target": "CounterTop",
+        "object_target": "Mug",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "place a microwaved tomato inside of the fridge": {
@@ -2912,13 +2898,13 @@
         "toggle_target": ""
     },
     "Put a mug with a spoon in the sink basin.": {
-        "mrecep_target": "Cup",
+        "mrecep_target": "Mug",
         "object_sliced": false,
         "object_target": "Spoon",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Put a mug with spoon in the sink. ": {
+    "Put a mug with spoon in the sink.": {
         "mrecep_target": "Mug",
         "object_sliced": false,
         "object_target": "Spoon",
@@ -2928,7 +2914,7 @@
     "move the bowl with the spoon from by the sink into the sink": {
         "mrecep_target": "Bowl",
         "object_sliced": false,
-        "object_target": "Spoon",
+        "object_target": "Ladle",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
@@ -2995,7 +2981,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "To move two spray bottles to the bin next to the toilet. ": {
+    "To move two spray bottles to the bin next to the toilet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SprayBottle",
@@ -3020,7 +3006,7 @@
         "mrecep_target": "Box",
         "object_sliced": false,
         "object_target": "RemoteControl",
-        "parent_target": "CoffeeTable",
+        "parent_target": "Sofa",
         "toggle_target": ""
     },
     "Packing a remote control": {
@@ -3039,7 +3025,7 @@
     },
     "Put a microwaved potato inside a refrigerator.": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Potato",
         "parent_target": "Fridge",
         "toggle_target": ""
@@ -3054,9 +3040,9 @@
     "Look at an object by the light of a lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Vase",
+        "object_target": "AlarmClock",
         "parent_target": "",
-        "toggle_target": "FloorLamp"
+        "toggle_target": "DeskLamp"
     },
     "Turn on the lamp in the living room.": {
         "mrecep_target": "",
@@ -3073,10 +3059,10 @@
         "toggle_target": "FloorLamp"
     },
     "Put a cup with a knife in it on the table to the left of the sink.": {
-        "mrecep_target": "Cup",
+        "mrecep_target": "Mug",
         "object_sliced": false,
-        "object_target": "Fork",
-        "parent_target": "DiningTable",
+        "object_target": "Knife",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "Move a cup and knife to the table.": {
@@ -3090,7 +3076,7 @@
         "mrecep_target": "Cup",
         "object_sliced": false,
         "object_target": "ButterKnife",
-        "parent_target": "DiningTable",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "Put a chilled plate in a cabinet.": {
@@ -3142,7 +3128,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Put the plunger under the sink. ": {
+    "Put the plunger under the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Plunger",
@@ -3177,7 +3163,7 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Put the mug with fork on the round table. ": {
+    "Put the mug with fork on the round table.": {
         "mrecep_target": "Mug",
         "object_sliced": false,
         "object_target": "Fork",
@@ -3191,7 +3177,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put the watch in the bowl on the nightstand. ": {
+    "Put the watch in the bowl on the nightstand.": {
         "mrecep_target": "Bowl",
         "object_sliced": false,
         "object_target": "Watch",
@@ -3209,7 +3195,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Watch",
-        "parent_target": "DiningTable",
+        "parent_target": "CoffeeTable",
         "toggle_target": ""
     },
     "Heat a tomato and place it on a table.": {
@@ -3223,7 +3209,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Tomato",
-        "parent_target": "SideTable",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "Put a warmed tomato on a table.": {
@@ -3235,7 +3221,7 @@
     },
     "put a chilled apple on a kitchen counter": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Apple",
         "parent_target": "CounterTop",
         "toggle_target": ""
@@ -3247,14 +3233,14 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Chill the apple in the refrigerator and put it on the counter. ": {
+    "Chill the apple in the refrigerator and put it on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "Put a frozen tomato in to garbage bin. ": {
+    "Put a frozen tomato in to garbage bin.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Tomato",
@@ -3270,7 +3256,7 @@
     },
     "To cool a tomato and place it in the trash can.": {
         "mrecep_target": "",
-        "object_sliced": false,
+        "object_sliced": true,
         "object_target": "Tomato",
         "parent_target": "GarbageCan",
         "toggle_target": ""
@@ -3282,14 +3268,14 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Chill a potato slice in the refrigerator. ": {
+    "Chill a potato slice in the refrigerator.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Potato",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put a cold slice of potato in a sink. ": {
+    "Put a cold slice of potato in a sink.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Potato",
@@ -3338,7 +3324,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Move two spoons to the kitchen counter. ": {
+    "Move two spoons to the kitchen counter.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Spoon",
@@ -3348,8 +3334,8 @@
     "Pick up the spoons from the sink and table, put them both on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Fork",
-        "parent_target": "CounterTop",
+        "object_target": "Spoon",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "Place two spoons on a counter.": {
@@ -3384,7 +3370,7 @@
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
-        "parent_target": "DiningTable",
+        "parent_target": "SinkBasin",
         "toggle_target": ""
     },
     "Put a cooked slice of tomato on the counter.": {
@@ -3405,7 +3391,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SprayBottle",
-        "parent_target": "Drawer",
+        "parent_target": "Cabinet",
         "toggle_target": ""
     },
     "get spray from white drawer to sink": {
@@ -3430,7 +3416,7 @@
         "toggle_target": ""
     },
     "Put the green bottle in the cabinet under the sink": {
-        "mrecep_target": "Pan",
+        "mrecep_target": "Plate",
         "object_sliced": false,
         "object_target": "DishSponge",
         "parent_target": "Cabinet",
@@ -3450,7 +3436,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Throw out a chilled piece of apple. ": {
+    "Throw out a chilled piece of apple.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
@@ -3468,10 +3454,10 @@
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
-        "parent_target": "CounterTop",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
-    "Put a warm apple slice on the counter. ": {
+    "Put a warm apple slice on the counter.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
@@ -3485,7 +3471,7 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Move the pan on the stove with a slice of tomato in it to the table. ": {
+    "Move the pan on the stove with a slice of tomato in it to the table.": {
         "mrecep_target": "Pan",
         "object_sliced": true,
         "object_target": "Tomato",
@@ -3523,11 +3509,11 @@
     "To pick up a yellow object, as well as turn on a lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Vase",
+        "object_target": "AlarmClock",
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Examine the credit card by the light of the lamp. ": {
+    "Examine the credit card by the light of the lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "CreditCard",
@@ -3586,7 +3572,7 @@
     "Place a clean fork on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Fork",
+        "object_target": "Spoon",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
@@ -3604,7 +3590,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Put the plunger in the cabinet. ": {
+    "Put the plunger in the cabinet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Plunger",
@@ -3625,10 +3611,10 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "pick up the lap top from the desk and turn on the lamp ": {
+    "pick up the lap top from the desk and turn on the lamp": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Laptop",
+        "object_target": "Pencil",
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
@@ -3639,7 +3625,7 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Put a bottle of nail polish on the toilet. ": {
+    "Put a bottle of nail polish on the toilet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Candle",
@@ -3697,7 +3683,7 @@
     },
     "Put a cold tomato in the microwave.": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Tomato",
         "parent_target": "Microwave",
         "toggle_target": ""
@@ -3733,7 +3719,7 @@
     "put a cooked potato into a fridge": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Egg",
+        "object_target": "Potato",
         "parent_target": "Fridge",
         "toggle_target": ""
     },
@@ -3842,7 +3828,7 @@
         "parent_target": "Dresser",
         "toggle_target": ""
     },
-    "Put a plate containing a tomato slice on it, in the refrigerator. ": {
+    "Put a plate containing a tomato slice on it, in the refrigerator.": {
         "mrecep_target": "Plate",
         "object_sliced": true,
         "object_target": "Tomato",
@@ -3857,13 +3843,13 @@
         "toggle_target": ""
     },
     "Refrigerate a tomato slice in a bowl": {
-        "mrecep_target": "Pan",
+        "mrecep_target": "Pot",
         "object_sliced": true,
         "object_target": "Tomato",
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "Chill a slice of tomato in the refrigerator. ": {
+    "Chill a slice of tomato in the refrigerator.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
@@ -3919,7 +3905,7 @@
         "parent_target": "Dresser",
         "toggle_target": ""
     },
-    "Place the cup from the table in the sink. ": {
+    "Place the cup from the table in the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cup",
@@ -3940,7 +3926,7 @@
         "parent_target": "StoveBurner",
         "toggle_target": ""
     },
-    "Move the keys to the computer on the sofa. ": {
+    "Move the keys to the computer on the sofa.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "KeyChain",
@@ -3968,7 +3954,7 @@
         "parent_target": "Sofa",
         "toggle_target": ""
     },
-    "To move two sets of keys to the couch. ": {
+    "To move two sets of keys to the couch.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "KeyChain",
@@ -3993,7 +3979,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Ladle",
-        "parent_target": "CounterTop",
+        "parent_target": "Cabinet",
         "toggle_target": ""
     },
     "Examine a credit card by the light of a floor lamp.": {
@@ -4024,7 +4010,7 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Move two spray bottles to the toilet. ": {
+    "Move two spray bottles to the toilet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SprayBottle",
@@ -4059,12 +4045,12 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Pick up the statue from the table and turn on the lamp. ": {
+    "Pick up the statue from the table and turn on the lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Statue",
         "parent_target": "",
-        "toggle_target": "FloorLamp"
+        "toggle_target": "DeskLamp"
     },
     "To pick up the statue and turn on the lamp next to the couch.": {
         "mrecep_target": "",
@@ -4101,7 +4087,7 @@
         "parent_target": "Dresser",
         "toggle_target": ""
     },
-    "Put a mug with pen in it on the TV stand. ": {
+    "Put a mug with pen in it on the TV stand.": {
         "mrecep_target": "Mug",
         "object_sliced": false,
         "object_target": "Pen",
@@ -4374,7 +4360,7 @@
         "parent_target": "Microwave",
         "toggle_target": ""
     },
-    "Place a washed tomato slice in the microwave. ": {
+    "Place a washed tomato slice in the microwave.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
@@ -4382,7 +4368,7 @@
         "toggle_target": ""
     },
     "Cook a sliced tomato in the microwave": {
-        "mrecep_target": "Plate",
+        "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
         "parent_target": "Microwave",
@@ -4396,7 +4382,7 @@
         "toggle_target": ""
     },
     "Place the newspaper next to the left laptop.": {
-        "mrecep_target": "Mug",
+        "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pencil",
         "parent_target": "Desk",
@@ -4427,7 +4413,7 @@
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Potato",
-        "parent_target": "DiningTable",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "Put a cold pot on a table.": {
@@ -4444,7 +4430,7 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Place a frying pan in the fridge and take it out. ": {
+    "Place a frying pan in the fridge and take it out.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pan",
@@ -4528,21 +4514,21 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Put a ": {
+    "Put a": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "CellPhone",
         "parent_target": "ArmChair",
         "toggle_target": ""
     },
-    "Put a clean rag on the toilet. ": {
+    "Put a clean rag on the toilet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cloth",
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Move two alarm clocks from the desk to the night stand. ": {
+    "Move two alarm clocks from the desk to the night stand.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "AlarmClock",
@@ -4570,7 +4556,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Put a cleaned rag in a drawer. ": {
+    "Put a cleaned rag in a drawer.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cloth",
@@ -4585,7 +4571,7 @@
         "toggle_target": ""
     },
     "place a black plate with a spoon in it on top of the kitchen table": {
-        "mrecep_target": "Bowl",
+        "mrecep_target": "Plate",
         "object_sliced": false,
         "object_target": "Spoon",
         "parent_target": "DiningTable",
@@ -4598,7 +4584,7 @@
         "parent_target": "SideTable",
         "toggle_target": ""
     },
-    "Move the plate to the table. ": {
+    "Move the plate to the table.": {
         "mrecep_target": "Plate",
         "object_sliced": false,
         "object_target": "Spatula",
@@ -4612,7 +4598,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put a pan with spoon in it, in the sink. ": {
+    "Put a pan with spoon in it, in the sink.": {
         "mrecep_target": "Pan",
         "object_sliced": false,
         "object_target": "Spoon",
@@ -4654,7 +4640,7 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Examine the pillow in the light of the lamp on the table. ": {
+    "Examine the pillow in the light of the lamp on the table.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pillow",
@@ -4671,8 +4657,8 @@
     "place microwaved black mug in upper cabinet in between microwave and sink": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Cup",
-        "parent_target": "SideTable",
+        "object_target": "Mug",
+        "parent_target": "Cabinet",
         "toggle_target": ""
     },
     "put a heated mug into a cabinet": {
@@ -4755,7 +4741,7 @@
     "Place a rinsed plate in the fridge.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Plate",
+        "object_target": "Bowl",
         "parent_target": "Fridge",
         "toggle_target": ""
     },
@@ -4852,12 +4838,12 @@
     },
     "Place a tomato and a knife in the microwave.": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Tomato",
         "parent_target": "Microwave",
         "toggle_target": ""
     },
-    "to cook a sliced tomato to throw it in the trash. ": {
+    "to cook a sliced tomato to throw it in the trash.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
@@ -4882,7 +4868,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Tomato",
-        "parent_target": "DiningTable",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "Put a cold, clean tomato on the counter.": {
@@ -4906,14 +4892,7 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Move a rinsed off bar of soap from the sink to the back of the toilet. ": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "SoapBar",
-        "parent_target": "Toilet",
-        "toggle_target": ""
-    },
-    "Put a bar of soap on the back of the toilet.": {
+    "Move a rinsed off bar of soap from the sink to the back of the toilet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -4948,7 +4927,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put chilled bread on the counter by the stove. ": {
+    "Put chilled bread on the counter by the stove.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Bread",
@@ -4983,14 +4962,14 @@
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "Put a warm apple slice in the refrigerator. ": {
+    "Put a warm apple slice in the refrigerator.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "Put a microwaved apple slice in the refrigerator. ": {
+    "Put a microwaved apple slice in the refrigerator.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
@@ -5039,7 +5018,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Put the spray bottle in the garbage bin. ": {
+    "Put the spray bottle in the garbage bin.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SprayBottle",
@@ -5099,7 +5078,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
-        "parent_target": "SinkBasin",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "PUt a pump bottle on the sink": {
@@ -5109,7 +5088,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Put a pot with sponge in the sink. ": {
+    "Put a pot with sponge in the sink.": {
         "mrecep_target": "Pot",
         "object_sliced": false,
         "object_target": "DishSponge",
@@ -5147,7 +5126,7 @@
     "Move bowl to coffee table.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Bowl",
+        "object_target": "Plate",
         "parent_target": "CoffeeTable",
         "toggle_target": ""
     },
@@ -5165,10 +5144,10 @@
         "parent_target": "CoffeeTable",
         "toggle_target": ""
     },
-    "Gather boxes to be placed on the coffee table. ": {
-        "mrecep_target": "Box",
+    "Gather boxes to be placed on the coffee table.": {
+        "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Statue",
+        "object_target": "Box",
         "parent_target": "CoffeeTable",
         "toggle_target": ""
     },
@@ -5203,11 +5182,11 @@
     "Grab the plate from corner, cool the plate in the refrigerator, put the plate by the sink": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Pan",
+        "object_target": "Cup",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Put a chilled plate on the counter left of the sink. ": {
+    "Put a chilled plate on the counter left of the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Plate",
@@ -5221,14 +5200,14 @@
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "Place lettuce into a refrigerator, retrieving a cooled knife from the refrigerator. ": {
+    "Place lettuce into a refrigerator, retrieving a cooled knife from the refrigerator.": {
         "mrecep_target": "Pan",
         "object_sliced": true,
         "object_target": "Lettuce",
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "Move a butter knife and two heads of lettuce to the fridge. ": {
+    "Move a butter knife and two heads of lettuce to the fridge.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Lettuce",
@@ -5284,7 +5263,7 @@
         "parent_target": "Microwave",
         "toggle_target": ""
     },
-    "Place a cooled potato slice into the microwave. ": {
+    "Place a cooled potato slice into the microwave.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Potato",
@@ -5305,14 +5284,14 @@
         "parent_target": "Cart",
         "toggle_target": ""
     },
-    "Move the bar of soap from the shelves to the metal rack. ": {
+    "Move the bar of soap from the shelves to the metal rack.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "SoapBottle",
+        "object_target": "SoapBar",
         "parent_target": "Cart",
         "toggle_target": ""
     },
-    "Put a bar of soap on a shelf. ": {
+    "Put a bar of soap on a shelf.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -5385,7 +5364,7 @@
     "Put a clean large metal spoon on the round white table.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Fork",
+        "object_target": "Spoon",
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
@@ -5393,7 +5372,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Ladle",
-        "parent_target": "DiningTable",
+        "parent_target": "Cabinet",
         "toggle_target": ""
     },
     "Place a washed spoon on a table.": {
@@ -5511,7 +5490,7 @@
     "To place the pan in the fridge to go back on the stove top.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Pan",
+        "object_target": "Pot",
         "parent_target": "StoveBurner",
         "toggle_target": ""
     },
@@ -5519,7 +5498,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pan",
-        "parent_target": "Cabinet",
+        "parent_target": "StoveBurner",
         "toggle_target": ""
     },
     "place a cold pan on the gas": {
@@ -5554,14 +5533,14 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
-        "parent_target": "DiningTable",
+        "parent_target": "Microwave",
         "toggle_target": ""
     },
     "To take, choose and clear out an item like an human while on foot beat.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Statue",
-        "parent_target": "CoffeeTable",
+        "object_target": "Laptop",
+        "parent_target": "Ottoman",
         "toggle_target": ""
     },
     "Put an empty toilet paper roll on a toilet paper holder.": {
@@ -5578,7 +5557,7 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Put an empty toilet paper roll on the toilet paper dispenser. ": {
+    "Put an empty toilet paper roll on the toilet paper dispenser.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "ToiletPaper",
@@ -5592,7 +5571,7 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Put a spray bottle on the toilet tank lid. ": {
+    "Put a spray bottle on the toilet tank lid.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SprayBottle",
@@ -5606,11 +5585,11 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "To move a yellow cup to the sink and put a knife in the yellow cup. ": {
+    "To move a yellow cup to the sink and put a knife in the yellow cup.": {
         "mrecep_target": "Cup",
         "object_sliced": false,
         "object_target": "ButterKnife",
-        "parent_target": "DiningTable",
+        "parent_target": "SinkBasin",
         "toggle_target": ""
     },
     "Put a glass and a knife in a sink.": {
@@ -5623,11 +5602,11 @@
     "Put a cup with a knife in it in the sink.": {
         "mrecep_target": "Cup",
         "object_sliced": false,
-        "object_target": "Fork",
+        "object_target": "ButterKnife",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Move the bowl and a pencil to the TV stand. ": {
+    "Move the bowl and a pencil to the TV stand.": {
         "mrecep_target": "Bowl",
         "object_sliced": false,
         "object_target": "Pencil",
@@ -5676,7 +5655,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "microwave a mug and then put it away in the cabinet ": {
+    "microwave a mug and then put it away in the cabinet": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
@@ -5687,7 +5666,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
-        "parent_target": "Cabinet",
+        "parent_target": "CoffeeMachine",
         "toggle_target": ""
     },
     "put heated mug inside kitchen cabinet": {
@@ -5746,14 +5725,14 @@
         "parent_target": "",
         "toggle_target": "FloorLamp"
     },
-    "Place a skillet containing a spoon into a sink. ": {
+    "Place a skillet containing a spoon into a sink.": {
         "mrecep_target": "Pan",
         "object_sliced": false,
         "object_target": "Spoon",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "To take the dishes to the sink. ": {
+    "To take the dishes to the sink.": {
         "mrecep_target": "Cup",
         "object_sliced": false,
         "object_target": "Spoon",
@@ -5784,7 +5763,7 @@
     "Put a spoon and pan into the sink at once.": {
         "mrecep_target": "Pan",
         "object_sliced": false,
-        "object_target": "Ladle",
+        "object_target": "Spoon",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
@@ -5820,28 +5799,28 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pillow",
-        "parent_target": "Ottoman",
+        "parent_target": "ArmChair",
         "toggle_target": ""
     },
     "Place two pillows on a sofa": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pillow",
-        "parent_target": "Ottoman",
+        "parent_target": "ArmChair",
         "toggle_target": ""
     },
     "Move two pillows to the couch.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pillow",
-        "parent_target": "Ottoman",
+        "parent_target": "ArmChair",
         "toggle_target": ""
     },
     "Put two pillows on the couch.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pillow",
-        "parent_target": "Ottoman",
+        "parent_target": "ArmChair",
         "toggle_target": ""
     },
     "Move both pillows from the blue chair to the tan sofa.": {
@@ -5851,7 +5830,7 @@
         "parent_target": "ArmChair",
         "toggle_target": ""
     },
-    "Arrange cushion one and two taken from the grey chair on the white couch ": {
+    "Arrange cushion one and two taken from the grey chair on the white couch": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pillow",
@@ -5865,7 +5844,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Put a cleaned, filled bowl of water in the cabinet,  left of the microwave. ": {
+    "Put a cleaned, filled bowl of water in the cabinet,  left of the microwave.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Bowl",
@@ -5923,7 +5902,7 @@
     },
     "Put in the heated apple in the trash bin": {
         "mrecep_target": "",
-        "object_sliced": false,
+        "object_sliced": true,
         "object_target": "Apple",
         "parent_target": "GarbageCan",
         "toggle_target": ""
@@ -5956,16 +5935,9 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Put a heated apple in the trash can. ": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "Apple",
-        "parent_target": "GarbageCan",
-        "toggle_target": ""
-    },
     "Put a warmed up apple in the trash can.": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Apple",
         "parent_target": "GarbageCan",
         "toggle_target": ""
@@ -5984,7 +5956,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Put the container with fork on the counter ": {
+    "Put the container with fork on the counter": {
         "mrecep_target": "Bowl",
         "object_sliced": false,
         "object_target": "Fork",
@@ -5994,8 +5966,8 @@
     "Pick up fork, put in cup in cabinet, pick up both and put on counter.": {
         "mrecep_target": "Cup",
         "object_sliced": false,
-        "object_target": "Fork",
-        "parent_target": "SinkBasin",
+        "object_target": "Spoon",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "Place the fork with green cup on counter.": {
@@ -6041,16 +6013,16 @@
         "toggle_target": ""
     },
     "Put a cup with a fork in it on the counter.": {
-        "mrecep_target": "Cup",
+        "mrecep_target": "Mug",
         "object_sliced": false,
         "object_target": "Fork",
-        "parent_target": "CounterTop",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "Put a plate with a bottle on top of it in the sink.": {
-        "mrecep_target": "",
+        "mrecep_target": "Cup",
         "object_sliced": false,
-        "object_target": "Cup",
+        "object_target": "Spoon",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
@@ -6064,14 +6036,14 @@
     "Put a bottle on a plate in the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Cup",
-        "parent_target": "SinkBasin",
+        "object_target": "SprayBottle",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "Put a glass vase and a plate in the sink.": {
-        "mrecep_target": "",
+        "mrecep_target": "Cup",
         "object_sliced": false,
-        "object_target": "Cup",
+        "object_target": "Fork",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
@@ -6092,11 +6064,11 @@
     "To put the plate and jar in the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Cup",
-        "parent_target": "SinkBasin",
+        "object_target": "SoapBottle",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put a chilled slice of tomato on the counter. ": {
+    "Put a chilled slice of tomato on the counter.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
@@ -6132,7 +6104,7 @@
         "toggle_target": ""
     },
     "Slice and refrigerate a slice of the tomato that is on the counter next to the stove.": {
-        "mrecep_target": "Pan",
+        "mrecep_target": "Pot",
         "object_sliced": true,
         "object_target": "Tomato",
         "parent_target": "Fridge",
@@ -6145,7 +6117,7 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Put a knife and a cold tomato slice on the counter. ": {
+    "Put a knife and a cold tomato slice on the counter.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
@@ -6161,19 +6133,12 @@
     },
     "chill the lettuce in the fridge then put it on the counter top": {
         "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "Lettuce",
-        "parent_target": "DiningTable",
-        "toggle_target": ""
-    },
-    "Put cold lettuce on the counter next to the other food.": {
-        "mrecep_target": "",
-        "object_sliced": false,
+        "object_sliced": true,
         "object_target": "Lettuce",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put chilled lettuce on the counter.": {
+    "Put cold lettuce on the counter next to the other food.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Lettuce",
@@ -6210,7 +6175,7 @@
     },
     "Put a head of chilled lettuce on the counter.": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Lettuce",
         "parent_target": "CounterTop",
         "toggle_target": ""
@@ -6222,7 +6187,7 @@
         "parent_target": "SideTable",
         "toggle_target": ""
     },
-    "Put a cup on the desk, by the chcair. ": {
+    "Put a cup on the desk, by the chcair.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
@@ -6232,8 +6197,8 @@
     "put a mug on a desk": {
         "mrecep_target": "Mug",
         "object_sliced": false,
-        "object_target": "Pencil",
-        "parent_target": "Desk",
+        "object_target": "Spoon",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "take the mug from the desk shelf to put it on the desk.": {
@@ -6243,7 +6208,7 @@
         "parent_target": "Desk",
         "toggle_target": ""
     },
-    "Move a mug from the shelf to the desk. ": {
+    "Move a mug from the shelf to the desk.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
@@ -6265,10 +6230,10 @@
         "toggle_target": ""
     },
     "Move a cup from the shelf to the desk.": {
-        "mrecep_target": "Cup",
+        "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Spoon",
-        "parent_target": "CounterTop",
+        "object_target": "Mug",
+        "parent_target": "Desk",
         "toggle_target": ""
     },
     "Pick up a coffee mug from the desk and put it down on the desk.": {
@@ -6380,12 +6345,12 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
-        "parent_target": "Microwave",
+        "parent_target": "Fridge",
         "toggle_target": ""
     },
     "Put the cooked green apple in the fridge": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Apple",
         "parent_target": "Fridge",
         "toggle_target": ""
@@ -6439,7 +6404,7 @@
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "Put a heated green apple in the fridge between the lettuce and the potato. ": {
+    "Put a heated green apple in the fridge between the lettuce and the potato.": {
         "mrecep_target": "Pan",
         "object_sliced": true,
         "object_target": "Lettuce",
@@ -6484,7 +6449,7 @@
     "look at the pencil under the lamp": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Pen",
+        "object_target": "Pencil",
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
@@ -6516,7 +6481,7 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Examine a pencil using the light of a lamp. ": {
+    "Examine a pencil using the light of a lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pencil",
@@ -6568,7 +6533,7 @@
     "take a rinsed egg to the microwave": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Egg",
+        "object_target": "Potato",
         "parent_target": "Microwave",
         "toggle_target": ""
     },
@@ -6600,7 +6565,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put a wet bar of soap back on the counter. ": {
+    "Put a wet bar of soap back on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -6614,21 +6579,14 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put wet soap on the counter. ": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "SoapBar",
-        "parent_target": "CounterTop",
-        "toggle_target": ""
-    },
-    "Put a wet soap on the counter. ": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "SoapBar",
-        "parent_target": "CounterTop",
-        "toggle_target": ""
-    },
     "Put wet soap on the counter.": {
+        "mrecep_target": "",
+        "object_sliced": false,
+        "object_target": "SoapBar",
+        "parent_target": "CounterTop",
+        "toggle_target": ""
+    },
+    "Put a wet soap on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -6675,7 +6633,7 @@
         "object_sliced": false,
         "object_target": "Statue",
         "parent_target": "",
-        "toggle_target": "DeskLamp"
+        "toggle_target": "FloorLamp"
     },
     "Look at a statue under a tall lamp": {
         "mrecep_target": "",
@@ -6703,7 +6661,7 @@
         "object_sliced": false,
         "object_target": "Statue",
         "parent_target": "",
-        "toggle_target": "DeskLamp"
+        "toggle_target": "FloorLamp"
     },
     "Look at the statue in lamp light.": {
         "mrecep_target": "",
@@ -6754,7 +6712,7 @@
         "parent_target": "CoffeeMachine",
         "toggle_target": ""
     },
-    "Pick up the white coffee cup, fill it in the sink, place it in the coffee maker. ": {
+    "Pick up the white coffee cup, fill it in the sink, place it in the coffee maker.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
@@ -6829,7 +6787,7 @@
         "object_sliced": false,
         "object_target": "Newspaper",
         "parent_target": "",
-        "toggle_target": "DeskLamp"
+        "toggle_target": "FloorLamp"
     },
     "Examine a newspaper by the light of a floor lamp": {
         "mrecep_target": "",
@@ -6838,7 +6796,7 @@
         "parent_target": "",
         "toggle_target": "FloorLamp"
     },
-    "Inspect a newspaper using the light of a lamp. ": {
+    "Inspect a newspaper using the light of a lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Newspaper",
@@ -6880,7 +6838,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Put a cold coffee up in the bottom cabinet. ": {
+    "Put a cold coffee up in the bottom cabinet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
@@ -6890,7 +6848,7 @@
     "Chill a cup and place it in the lower cupboard": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Cup",
+        "object_target": "Mug",
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
@@ -6913,7 +6871,7 @@
         "object_sliced": false,
         "object_target": "TissueBox",
         "parent_target": "",
-        "toggle_target": "DeskLamp"
+        "toggle_target": "FloorLamp"
     },
     "turn on the lamp while holding a box of tissues": {
         "mrecep_target": "",
@@ -6960,15 +6918,15 @@
     "To perform an task using both hands.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "KeyChain",
-        "parent_target": "ArmChair",
-        "toggle_target": ""
+        "object_target": "AlarmClock",
+        "parent_target": "",
+        "toggle_target": "DeskLamp"
     },
     "Wash a knife in the sink to place on a countertop.": {
-        "mrecep_target": "",
+        "mrecep_target": "Plate",
         "object_sliced": false,
-        "object_target": "ButterKnife",
-        "parent_target": "CounterTop",
+        "object_target": "Knife",
+        "parent_target": "SinkBasin",
         "toggle_target": ""
     },
     "rinse the knife to put it back on the counter": {
@@ -6995,7 +6953,7 @@
     "Put a large clean knife on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Knife",
+        "object_target": "ButterKnife",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
@@ -7007,20 +6965,20 @@
         "toggle_target": ""
     },
     "Place a clean knife on a plate on the counter.": {
-        "mrecep_target": "Plate",
+        "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "ButterKnife",
+        "object_target": "Knife",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "Rinse a knife and put it on a plate.": {
-        "mrecep_target": "Plate",
+        "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "ButterKnife",
-        "parent_target": "CounterTop",
+        "object_target": "Knife",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "clean a knife and put it back onto the counter ": {
+    "clean a knife and put it back onto the counter": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Knife",
@@ -7041,7 +6999,7 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Put a warm tomato slice in the sink. ": {
+    "Put a warm tomato slice in the sink.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
@@ -7059,7 +7017,7 @@
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Tomato",
-        "parent_target": "SinkBasin",
+        "parent_target": "Fridge",
         "toggle_target": ""
     },
     "Cook a slice of tomato": {
@@ -7114,11 +7072,11 @@
     "Turn on the desk lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Pillow",
+        "object_target": "Box",
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Look at the CD in the light. ": {
+    "Look at the CD in the light.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "CD",
@@ -7182,9 +7140,9 @@
         "toggle_target": ""
     },
     "Put the pan and knife in the sink.": {
-        "mrecep_target": "Plate",
+        "mrecep_target": "Pan",
         "object_sliced": false,
-        "object_target": "Knife",
+        "object_target": "Spoon",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
@@ -7209,7 +7167,7 @@
         "parent_target": "Safe",
         "toggle_target": ""
     },
-    "Put the vase in the vault ": {
+    "Put the vase in the vault": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Vase",
@@ -7233,25 +7191,25 @@
     "Place a gold bottle in a safe.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "SoapBottle",
-        "parent_target": "Cabinet",
+        "object_target": "KeyChain",
+        "parent_target": "Safe",
         "toggle_target": ""
     },
     "Put the golden object from the shelf into the safe.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Vase",
+        "object_target": "KeyChain",
         "parent_target": "Safe",
         "toggle_target": ""
     },
-    "Put a slice of green apple in the trash can near the fridge. ": {
+    "Put a slice of green apple in the trash can near the fridge.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "To heat a piece of an apple and place it in a black bin. ": {
+    "To heat a piece of an apple and place it in a black bin.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
@@ -7281,7 +7239,7 @@
     },
     "Slice apple in the trash can, grab a piece, cook it in the microwave, put it in the trash can": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Apple",
         "parent_target": "GarbageCan",
         "toggle_target": ""
@@ -7300,7 +7258,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Put a heated slice of apple in the trash can near the fridge. ": {
+    "Put a heated slice of apple in the trash can near the fridge.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
@@ -7335,7 +7293,7 @@
         "parent_target": "SideTable",
         "toggle_target": ""
     },
-    "Put a heated apple piece on the counter. ": {
+    "Put a heated apple piece on the counter.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
@@ -7356,11 +7314,11 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "cook an apple slice in the microwave ": {
+    "cook an apple slice in the microwave": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
-        "parent_target": "DiningTable",
+        "parent_target": "Fridge",
         "toggle_target": ""
     },
     "slice and cook a piece of bread , put it on the counter top": {
@@ -7377,7 +7335,7 @@
         "parent_target": "SideTable",
         "toggle_target": ""
     },
-    "Put a warm slice of bread on the counter. ": {
+    "Put a warm slice of bread on the counter.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Bread",
@@ -7386,9 +7344,9 @@
     },
     "Heat one piece of the slice bread and bring it beside the coffee maker.": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Bread",
-        "parent_target": "DiningTable",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "TO heat a slice of bread and place it on the counter to the right of the stove.": {
@@ -7400,7 +7358,7 @@
     },
     "Slice bread, heat bread, move knife and bread to counter.": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Bread",
         "parent_target": "CounterTop",
         "toggle_target": ""
@@ -7419,7 +7377,7 @@
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Examine the box in the light of the tall lamp. ": {
+    "Examine the box in the light of the tall lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Box",
@@ -7475,7 +7433,7 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "To turn on a lamp to see inside a box.  ": {
+    "To turn on a lamp to see inside a box.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Box",
@@ -7498,7 +7456,7 @@
     },
     "Put a rinsed slice of lettuce in the trash.": {
         "mrecep_target": "",
-        "object_sliced": false,
+        "object_sliced": true,
         "object_target": "Lettuce",
         "parent_target": "GarbageCan",
         "toggle_target": ""
@@ -7512,7 +7470,7 @@
     },
     "Dispose of a lettuce slice after slicing and rinsing it off": {
         "mrecep_target": "",
-        "object_sliced": false,
+        "object_sliced": true,
         "object_target": "Lettuce",
         "parent_target": "GarbageCan",
         "toggle_target": ""
@@ -7615,7 +7573,7 @@
         "parent_target": "Safe",
         "toggle_target": ""
     },
-    "Put a watch in a safe. ": {
+    "Put a watch in a safe.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Vase",
@@ -7653,7 +7611,7 @@
     "Secure watch in safe.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Vase",
+        "object_target": "CellPhone",
         "parent_target": "Safe",
         "toggle_target": ""
     },
@@ -7661,7 +7619,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "KeyChain",
-        "parent_target": "Drawer",
+        "parent_target": "Safe",
         "toggle_target": ""
     },
     "Heat up a potato and put it in the trash.": {
@@ -7671,7 +7629,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Put a heated potato in the garbage can on the floor, next to the kitchen Island. ": {
+    "Put a heated potato in the garbage can on the floor, next to the kitchen Island.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Potato",
@@ -7701,12 +7659,12 @@
     },
     "Microwave a potato and throw it away": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Potato",
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Put a cooked potato in the garbage can. ": {
+    "Put a cooked potato in the garbage can.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Potato",
@@ -7742,7 +7700,7 @@
         "toggle_target": ""
     },
     "Take the pencil from the desk, put it back on the desk": {
-        "mrecep_target": "Bowl",
+        "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pencil",
         "parent_target": "Desk",
@@ -7762,7 +7720,7 @@
         "parent_target": "Desk",
         "toggle_target": ""
     },
-    "Move a pencil on the desk over. ": {
+    "Move a pencil on the desk over.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pencil",
@@ -7783,7 +7741,7 @@
         "parent_target": "Desk",
         "toggle_target": ""
     },
-    "Pick up the egg, put it in the refrigerator and then put it in the sink. ": {
+    "Pick up the egg, put it in the refrigerator and then put it in the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Egg",
@@ -7965,7 +7923,7 @@
         "parent_target": "Microwave",
         "toggle_target": ""
     },
-    "Put the potato in the microwave. ": {
+    "Put the potato in the microwave.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Potato",
@@ -7987,13 +7945,6 @@
         "toggle_target": ""
     },
     "Put a chilled potato in the microwave.": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "Potato",
-        "parent_target": "Microwave",
-        "toggle_target": ""
-    },
-    "Put a chilled potato in the microwave. ": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Potato",
@@ -8039,7 +7990,7 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cloth",
-        "parent_target": "CounterTop",
+        "parent_target": "Drawer",
         "toggle_target": ""
     },
     "Place a clean rag on a counter.": {
@@ -8058,12 +8009,12 @@
     },
     "Get an apple from the sink and heat it up in the microwave": {
         "mrecep_target": "",
-        "object_sliced": false,
+        "object_sliced": true,
         "object_target": "Apple",
-        "parent_target": "SideTable",
+        "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "Cook apple in microwave, place in sink. ": {
+    "Cook apple in microwave, place in sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
@@ -8084,7 +8035,7 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Heat the left apple in the microwave. ": {
+    "Heat the left apple in the microwave.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
@@ -8105,7 +8056,7 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Put a cooked apple in a sink. ": {
+    "Put a cooked apple in a sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Apple",
@@ -8126,24 +8077,24 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put a cup with knife in it, on the counter. ": {
-        "mrecep_target": "Mug",
+    "Put a cup with knife in it, on the counter.": {
+        "mrecep_target": "Cup",
         "object_sliced": false,
-        "object_target": "Knife",
-        "parent_target": "SideTable",
+        "object_target": "ButterKnife",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put the butter knife into a green cup and place the cup onto the counter. ": {
+    "Put the butter knife into a green cup and place the cup onto the counter.": {
         "mrecep_target": "Cup",
         "object_sliced": false,
         "object_target": "Spoon",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Move a knife and a green cup to the counter. ": {
+    "Move a knife and a green cup to the counter.": {
         "mrecep_target": "Cup",
         "object_sliced": false,
-        "object_target": "Fork",
+        "object_target": "ButterKnife",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
@@ -8157,7 +8108,7 @@
     "place a cup with a knife in it on the kitchen counter space": {
         "mrecep_target": "Cup",
         "object_sliced": false,
-        "object_target": "Spoon",
+        "object_target": "ButterKnife",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
@@ -8171,7 +8122,7 @@
     "Put a cup with a knife in it on the counter.": {
         "mrecep_target": "Cup",
         "object_sliced": false,
-        "object_target": "Spoon",
+        "object_target": "ButterKnife",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
@@ -8199,11 +8150,11 @@
     "To move two bars of soap from the back of the toilet to the trash can.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "SprayBottle",
+        "object_target": "SoapBottle",
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "To move two bars of soap to the gold bin. ": {
+    "To move two bars of soap to the gold bin.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -8224,7 +8175,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Examine the bat with the light on the desk. ": {
+    "Examine the bat with the light on the desk.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "BaseballBat",
@@ -8252,7 +8203,7 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Examine the bad under the light on the desk. ": {
+    "Examine the bad under the light on the desk.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Laptop",
@@ -8280,7 +8231,7 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Heat a tomato and place in a bin. ": {
+    "Heat a tomato and place in a bin.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Tomato",
@@ -8317,12 +8268,12 @@
     },
     "Place a cooked tomato in a trash can": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Tomato",
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Heat a tomato and place in the bin. ": {
+    "Heat a tomato and place in the bin.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Tomato",
@@ -8330,13 +8281,6 @@
         "toggle_target": ""
     },
     "Put a microwaved tomato in the garbage.": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "Tomato",
-        "parent_target": "GarbageCan",
-        "toggle_target": ""
-    },
-    "Put a heated tomato in the trash can. ": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Tomato",
@@ -8375,7 +8319,7 @@
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Bread",
-        "parent_target": "GarbageCan",
+        "parent_target": "Fridge",
         "toggle_target": ""
     },
     "placed a cooled slice of bread that you cut inside of the microwave": {
@@ -8385,7 +8329,7 @@
         "parent_target": "Microwave",
         "toggle_target": ""
     },
-    "Place a piece of sliced bread in the microwave. ": {
+    "Place a piece of sliced bread in the microwave.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Bread",
@@ -8413,7 +8357,7 @@
         "parent_target": "Toilet",
         "toggle_target": ""
     },
-    "Put soap on toilet tank lid. ": {
+    "Put soap on toilet tank lid.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -8518,7 +8462,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Put the salt shaker in the middle drawer by the stove. ": {
+    "Put the salt shaker in the middle drawer by the stove.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "PepperShaker",
@@ -8549,7 +8493,7 @@
     "Walk towards the kitchen island, grab the salt, store it inside the second kitchen drawer.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "PepperShaker",
+        "object_target": "SaltShaker",
         "parent_target": "Drawer",
         "toggle_target": ""
     },
@@ -8567,7 +8511,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Put the salt shaker in the drawer. ": {
+    "Put the salt shaker in the drawer.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "PepperShaker",
@@ -8707,7 +8651,7 @@
         "parent_target": "SideTable",
         "toggle_target": ""
     },
-    "cleaning up the kitchen. ": {
+    "cleaning up the kitchen.": {
         "mrecep_target": "Mug",
         "object_sliced": false,
         "object_target": "ButterKnife",
@@ -8721,7 +8665,7 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Put the cup with the fork in it in the sink. ": {
+    "Put the cup with the fork in it in the sink.": {
         "mrecep_target": "Cup",
         "object_sliced": false,
         "object_target": "Fork",
@@ -8791,14 +8735,14 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Slice a lettuce, cool a slice ": {
+    "Slice a lettuce, cool a slice": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Lettuce",
         "parent_target": "DiningTable",
         "toggle_target": ""
     },
-    "Put a cold slice of lettuce in the garbage bin. ": {
+    "Put a cold slice of lettuce in the garbage bin.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Lettuce",
@@ -8857,7 +8801,7 @@
     "Take the math book to the night stand": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Pencil",
+        "object_target": "Book",
         "parent_target": "SideTable",
         "toggle_target": ""
     },
@@ -8932,17 +8876,17 @@
         "toggle_target": ""
     },
     "To cut put 1 1/3 apples on the counter.": {
-        "mrecep_target": "Pan",
+        "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
-        "parent_target": "CounterTop",
+        "parent_target": "Microwave",
         "toggle_target": ""
     },
     "Cut two apples into sections, move one section from the sink to the counter.": {
         "mrecep_target": "",
         "object_sliced": true,
-        "object_target": "Apple",
-        "parent_target": "Microwave",
+        "object_target": "Tomato",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "Put two apples on a counter the cut them into pieces.": {
@@ -8952,10 +8896,10 @@
         "parent_target": "Microwave",
         "toggle_target": ""
     },
-    "To cut apples on the counter with a knife. ": {
+    "To cut apples on the counter with a knife.": {
         "mrecep_target": "Pan",
         "object_sliced": true,
-        "object_target": "Apple",
+        "object_target": "Tomato",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
@@ -8966,7 +8910,7 @@
         "parent_target": "Microwave",
         "toggle_target": ""
     },
-    "Cut two apples that are on a counter. ": {
+    "Cut two apples that are on a counter.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
@@ -8984,7 +8928,7 @@
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Apple",
-        "parent_target": "Microwave",
+        "parent_target": "SideTable",
         "toggle_target": ""
     },
     "Carry a credit card while turning on a lamp": {
@@ -9057,14 +9001,14 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Move soap from counter to sink, followed by moving to cupboard below sink ": {
+    "Move soap from counter to sink, followed by moving to cupboard below sink": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Put washed soap away in a cabinet. ": {
+    "Put washed soap away in a cabinet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -9092,7 +9036,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Examine a computer in the lamp light. ": {
+    "Examine a computer in the lamp light.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Laptop",
@@ -9167,16 +9111,16 @@
         "object_sliced": false,
         "object_target": "Laptop",
         "parent_target": "",
-        "toggle_target": "DeskLamp"
+        "toggle_target": "FloorLamp"
     },
     "Pick up laptop and turn on lamp": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Laptop",
         "parent_target": "",
-        "toggle_target": "DeskLamp"
+        "toggle_target": "FloorLamp"
     },
-    "Examine a laptop using the light of a floor lamp. ": {
+    "Examine a laptop using the light of a floor lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Laptop",
@@ -9190,7 +9134,7 @@
         "parent_target": "",
         "toggle_target": "FloorLamp"
     },
-    "Turn on the light while holding a laptop. ": {
+    "Turn on the light while holding a laptop.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Laptop",
@@ -9232,7 +9176,7 @@
         "parent_target": "Microwave",
         "toggle_target": ""
     },
-    "To chill a tomato and put it inside of the microwave. ": {
+    "To chill a tomato and put it inside of the microwave.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Tomato",
@@ -9265,19 +9209,12 @@
         "object_sliced": false,
         "object_target": "CellPhone",
         "parent_target": "",
-        "toggle_target": "FloorLamp"
+        "toggle_target": "DeskLamp"
     },
     "grab the phone from the blue sofa, turn on the lamp in the corner": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "CellPhone",
-        "parent_target": "",
-        "toggle_target": "FloorLamp"
-    },
-    "Turn on the living room lamp. ": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "Watch",
         "parent_target": "",
         "toggle_target": "FloorLamp"
     },
@@ -9288,12 +9225,12 @@
         "parent_target": "",
         "toggle_target": "FloorLamp"
     },
-    "Examine a phone by the light of the lamp in the corner. ": {
+    "Examine a phone by the light of the lamp in the corner.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "CellPhone",
         "parent_target": "",
-        "toggle_target": "FloorLamp"
+        "toggle_target": "DeskLamp"
     },
     "Pick up a phone and turn a lamp on.": {
         "mrecep_target": "",
@@ -9330,7 +9267,7 @@
         "parent_target": "Fridge",
         "toggle_target": ""
     },
-    "Put a slice of heated potato in the fridge. ": {
+    "Put a slice of heated potato in the fridge.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Potato",
@@ -9379,14 +9316,14 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put chilled bread on the counter. ": {
+    "Put chilled bread on the counter.": {
         "mrecep_target": "",
         "object_sliced": true,
         "object_target": "Bread",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put chilled bread on the counter, right of the fridge. ": {
+    "Put chilled bread on the counter, right of the fridge.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Bread",
@@ -9414,7 +9351,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Wash a plate and place on counter. ": {
+    "Wash a plate and place on counter.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Plate",
@@ -9470,7 +9407,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "To heat an egg and place it inside the black bin. ": {
+    "To heat an egg and place it inside the black bin.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Egg",
@@ -9484,7 +9421,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "Put a heated egg in the trash can. ": {
+    "Put a heated egg in the trash can.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Egg",
@@ -9498,7 +9435,7 @@
         "parent_target": "GarbageCan",
         "toggle_target": ""
     },
-    "To heat an egg and place in the black bin. ": {
+    "To heat an egg and place in the black bin.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Egg",
@@ -9519,7 +9456,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Put the salt in the cabinet above the counter. ": {
+    "Put the salt in the cabinet above the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "PepperShaker",
@@ -9547,7 +9484,7 @@
         "parent_target": "Shelf",
         "toggle_target": ""
     },
-    "Put the salt in the bottom cabinet next to the fridge. ": {
+    "Put the salt in the bottom cabinet next to the fridge.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SaltShaker",
@@ -9565,25 +9502,25 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "PepperShaker",
-        "parent_target": "Cabinet",
-        "toggle_target": ""
-    },
-    "Put salt in the cabinet next to the fridge. ": {
-        "mrecep_target": "",
-        "object_sliced": false,
-        "object_target": "PepperShaker",
         "parent_target": "Drawer",
         "toggle_target": ""
     },
+    "Put salt in the cabinet next to the fridge.": {
+        "mrecep_target": "",
+        "object_sliced": false,
+        "object_target": "SaltShaker",
+        "parent_target": "Cabinet",
+        "toggle_target": ""
+    },
     "Move a bowl and egg to the counter.": {
-        "mrecep_target": "Plate",
+        "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Egg",
-        "parent_target": "CounterTop",
+        "parent_target": "DiningTable",
         "toggle_target": ""
     },
     "Put egg in bowl and place on counter": {
-        "mrecep_target": "Plate",
+        "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Egg",
         "parent_target": "CounterTop",
@@ -9596,14 +9533,14 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Put an egg in a bowl on the counter. ": {
+    "Put an egg in a bowl on the counter.": {
         "mrecep_target": "Plate",
         "object_sliced": false,
         "object_target": "Egg",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put an egg in a bowl, on the counter. ": {
+    "Put an egg in a bowl, on the counter.": {
         "mrecep_target": "Plate",
         "object_sliced": false,
         "object_target": "Egg",
@@ -9625,8 +9562,8 @@
         "toggle_target": ""
     },
     "Move a cup so that a potato can go in it.": {
-        "mrecep_target": "",
-        "object_sliced": false,
+        "mrecep_target": "Pot",
+        "object_sliced": true,
         "object_target": "Potato",
         "parent_target": "DiningTable",
         "toggle_target": ""
@@ -9666,7 +9603,7 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Examine a mug using the light of a desk lamp. ": {
+    "Examine a mug using the light of a desk lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
@@ -9701,7 +9638,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "To get a chilled mug for coffee. ": {
+    "To get a chilled mug for coffee.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
@@ -9722,7 +9659,7 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "Put a mug with spoon in it on the counter left of the stove. ": {
+    "Put a mug with spoon in it on the counter left of the stove.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cup",
@@ -9746,8 +9683,8 @@
     "Bring a white cup from the Fridge to the Counter.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Cup",
-        "parent_target": "Fridge",
+        "object_target": "WineBottle",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "Put a spoon in a mug on a counter.": {
@@ -9862,7 +9799,7 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Place a chilled mug under the coffee maker spout. ": {
+    "Place a chilled mug under the coffee maker spout.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
@@ -9876,7 +9813,7 @@
         "parent_target": "CoffeeMachine",
         "toggle_target": ""
     },
-    "Move a chilled mug to the coffee maker. ": {
+    "Move a chilled mug to the coffee maker.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Mug",
@@ -9932,25 +9869,25 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Put chilled lettuce in the sink. ": {
+    "Put chilled lettuce in the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Lettuce",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "To chill lettuce for cooking. ": {
+    "To chill lettuce for cooking.": {
         "mrecep_target": "",
-        "object_sliced": false,
+        "object_sliced": true,
         "object_target": "Lettuce",
-        "parent_target": "CounterTop",
+        "parent_target": "GarbageCan",
         "toggle_target": ""
     },
     "Take the lettuce off the counter to put in the fridge to put in the sink.": {
         "mrecep_target": "",
-        "object_sliced": true,
+        "object_sliced": false,
         "object_target": "Lettuce",
-        "parent_target": "Fridge",
+        "parent_target": "SinkBasin",
         "toggle_target": ""
     },
     "cool the cabbage in the refrigerator, put it in the sink": {
@@ -9960,14 +9897,7 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "Put cold lettuce in the sink. ": {
-        "mrecep_target": "",
-        "object_sliced": true,
-        "object_target": "Lettuce",
-        "parent_target": "SinkBasin",
-        "toggle_target": ""
-    },
-    "Turn on a lamp with a metal box. ": {
+    "Turn on a lamp with a metal box.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Box",
@@ -9981,7 +9911,7 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Turn on a desk lamp. ": {
+    "Turn on a desk lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pillow",
@@ -9995,7 +9925,7 @@
         "parent_target": "",
         "toggle_target": "DeskLamp"
     },
-    "Examine an alarm clock using the light of a lamp. ": {
+    "Examine an alarm clock using the light of a lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "AlarmClock",
@@ -10005,9 +9935,9 @@
     "Turning on a lamp while holding a canteen": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Candle",
+        "object_target": "WateringCan",
         "parent_target": "",
-        "toggle_target": "FloorLamp"
+        "toggle_target": "DeskLamp"
     },
     "Examine the alarm clock by the light": {
         "mrecep_target": "",
@@ -10072,7 +10002,7 @@
         "parent_target": "",
         "toggle_target": "FloorLamp"
     },
-    "Turn on the corner lamp. ": {
+    "Turn on the corner lamp.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Vase",
@@ -10094,9 +10024,9 @@
         "toggle_target": ""
     },
     "Move a knife in a cup to the sink.": {
-        "mrecep_target": "Cup",
+        "mrecep_target": "Mug",
         "object_sliced": false,
-        "object_target": "ButterKnife",
+        "object_target": "Knife",
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
@@ -10107,7 +10037,7 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "To put a knife in the glass and put the glass in the sink. ": {
+    "To put a knife in the glass and put the glass in the sink.": {
         "mrecep_target": "Cup",
         "object_sliced": false,
         "object_target": "ButterKnife",
@@ -10135,11 +10065,11 @@
         "parent_target": "SinkBasin",
         "toggle_target": ""
     },
-    "To move two bars of soap to the cabinet. ": {
+    "To move two bars of soap to the cabinet.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "SoapBottle",
-        "parent_target": "Cabinet",
+        "object_target": "SoapBar",
+        "parent_target": "Shelf",
         "toggle_target": ""
     },
     "Place two bars of white soap on the shelf in the cabinet.": {
@@ -10156,7 +10086,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "To move two bars of soap to the cabinet below the sink. ": {
+    "To move two bars of soap to the cabinet below the sink.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "SoapBar",
@@ -10250,7 +10180,7 @@
     "put a bowl and a pencil between the books on the desk": {
         "mrecep_target": "Bowl",
         "object_sliced": false,
-        "object_target": "Pen",
+        "object_target": "Pencil",
         "parent_target": "Desk",
         "toggle_target": ""
     },
@@ -10264,7 +10194,7 @@
     "put a bowl with a pencil in it on the desk": {
         "mrecep_target": "Bowl",
         "object_sliced": false,
-        "object_target": "Pen",
+        "object_target": "Pencil",
         "parent_target": "Desk",
         "toggle_target": ""
     },
@@ -10279,7 +10209,7 @@
         "mrecep_target": "Bowl",
         "object_sliced": false,
         "object_target": "Pencil",
-        "parent_target": "Dresser",
+        "parent_target": "CounterTop",
         "toggle_target": ""
     },
     "Put a transparent plate with pencil in a book shelf.": {
@@ -10314,14 +10244,14 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cloth",
-        "parent_target": "BathtubBasin",
+        "parent_target": "SinkBasin",
         "toggle_target": ""
     },
     "Put a cleaned cloth rag in a cabinet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cloth",
-        "parent_target": "Cabinet",
+        "parent_target": "Drawer",
         "toggle_target": ""
     },
     "wash the cloth from the cabinet, put it back": {
@@ -10390,7 +10320,7 @@
     "Warm up the cup inside the cabinet.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Mug",
+        "object_target": "Cup",
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
@@ -10415,7 +10345,7 @@
         "parent_target": "Cabinet",
         "toggle_target": ""
     },
-    "Put a heated cup in a cabinet. ": {
+    "Put a heated cup in a cabinet.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Cup",
@@ -10516,7 +10446,7 @@
     "Place two salt shakers in a kitchen drawer.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "SaltShaker",
+        "object_target": "PepperShaker",
         "parent_target": "Drawer",
         "toggle_target": ""
     },
@@ -10541,14 +10471,14 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Put two containers of salt in the kitchen drawer. ": {
+    "Put two containers of salt in the kitchen drawer.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "SaltShaker",
+        "object_target": "PepperShaker",
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "Examine the bowl by the light on the desk. ": {
+    "Examine the bowl by the light on the desk.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Bowl",
@@ -10667,7 +10597,7 @@
         "parent_target": "Bed",
         "toggle_target": ""
     },
-    "Put a cleaned pan on the counter. ": {
+    "Put a cleaned pan on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pan",
@@ -10675,7 +10605,7 @@
         "toggle_target": ""
     },
     "drop a clean pan on the table": {
-        "mrecep_target": "Pot",
+        "mrecep_target": "Pan",
         "object_sliced": false,
         "object_target": "Spatula",
         "parent_target": "DiningTable",
@@ -10744,14 +10674,14 @@
         "parent_target": "Safe",
         "toggle_target": ""
     },
-    "Move two sets of keys to the white safe. ": {
+    "Move two sets of keys to the white safe.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "KeyChain",
         "parent_target": "Safe",
         "toggle_target": ""
     },
-    "Put two sets of keys in the safe. ": {
+    "Put two sets of keys in the safe.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "KeyChain",
@@ -10786,7 +10716,7 @@
         "parent_target": "Drawer",
         "toggle_target": ""
     },
-    "place the toilet paper with the cover inside the cupboard ": {
+    "place the toilet paper with the cover inside the cupboard": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "ToiletPaper",
@@ -10825,14 +10755,14 @@
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "ToiletPaper",
-        "parent_target": "Drawer",
+        "parent_target": "Cabinet",
         "toggle_target": ""
     },
     "Placing a toilet paper roll, a toilet paper under the sink": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "ToiletPaper",
-        "parent_target": "Drawer",
+        "parent_target": "Cabinet",
         "toggle_target": ""
     },
     "Put the toilet paper in the cabinet.  Put the empty toilet paper roll in to the cabinet.": {
@@ -10849,10 +10779,10 @@
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
-    "To chill a pan and put it on the counter. ": {
+    "To chill a pan and put it on the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Pan",
+        "object_target": "Pot",
         "parent_target": "CounterTop",
         "toggle_target": ""
     },
@@ -10873,11 +10803,11 @@
     "Remove the pan from the stove, chill it in the fridge and return it to the counter.": {
         "mrecep_target": "",
         "object_sliced": false,
-        "object_target": "Pan",
+        "object_target": "Pot",
         "parent_target": "StoveBurner",
         "toggle_target": ""
     },
-    "Put a cold pan on the counter top on top of the dishwasher. ": {
+    "Put a cold pan on the counter top on top of the dishwasher.": {
         "mrecep_target": "",
         "object_sliced": false,
         "object_target": "Pan",
