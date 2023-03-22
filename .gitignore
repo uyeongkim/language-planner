@@ -1,1 +1,13 @@
-runs/
+.vscode/*
+.vector_cache/*
+.gitignore
+
+result/*
+result_pickle/*
+param_log/*
+log/*
+data/*
+*.txt
+*.pyc
+*/__pycache__/*
+*.pkl
