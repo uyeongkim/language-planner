@@ -7,6 +7,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from sentence_transformers import util as st_utils
 import parmap
+from data.alfred_data import constants
 
 GPU_USED = [0]
 

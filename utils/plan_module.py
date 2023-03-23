@@ -1,6 +1,7 @@
 """
 This module define Plan and AlfredObject class
 """
+# TODO: Plan module low action yet implemeted
 
 import json
 import re
@@ -15,32 +16,37 @@ class Plan:
     NAV_ACTIONS = {'LookDown', 'LookUp', 'MoveAhead', 'RotateLeft', 'RotateRight'}
     HIGH_INTERACT_ACTIONS = \
         ['HeatObject', 'CoolObject', 'CleanObject', 'ToggleObject', 'SliceObject']
+    HIGH_ACTIONS = ['PickupObject', 'PutObject', 'HeatObject', 'CleanObject', 'CleanObject', 'ToggleObject', 'SliceObject']
     def __init__(self, high_desc=None, low_desc=None, triplets=None, low_actions=None):
         # check triplet validity
         for action_idx, high_action in enumerate(triplets):
             if high_action[0] in Plan.HIGH_INTERACT_ACTIONS:
-                i = Plan.HIGH_INTERACT_ACTIONS.index(high_action[0])
-                assert high_action[1] in \
+                # Error correcting: arg name different with in-hand obj
+                if high_action[0] in Plan.HIGH_INTERACT_ACTIONS[:3] and high_action[1] != triplets[action_idx-1][1]:
+                    high_action[1] = triplets[action_idx-1][1]
+
+                if high_action[1] not in \
                     constants.VAL_ACTION_OBJECTS[
-                        ['Heatable', 'Coolable', 'Cleanable', 'Toggleable', 'Sliceable'][i]
-                        ]
+                        ['Heatable', 'Coolable', 'Cleanable', 'Toggleable', 'Sliceable'][Plan.HIGH_INTERACT_ACTIONS.index(high_action[0])]]:
+                    raise Exception(f"{high_action[1]} is not {high_action[0]}-able.")
             assert high_action[2] in constants.RECEPTACLES | {'0', '', 'FloorLamp', 'DeskLamp'}
             if high_action[0] == 'PutObject':
                 # change (Put, recep, recep) to (Put, obj, recep)
                 if high_action[1] in constants.RECEPTACLES and (high_action[1] == high_action[2] or high_action[2] == '0'):
                     if triplets[action_idx-1][0] == 'SliceObject':
-                        new_action = ('PutObject', triplets[action_idx-2][1], high_action[1])
+                        new_action = ['PutObject', triplets[action_idx-2][1], high_action[1]]
                     else:
-                        new_action = ('PutObject', triplets[action_idx-1][1], high_action[1])
+                        new_action = ['PutObject', triplets[action_idx-1][1], high_action[1]]
                     # print(f'{high_action} -> {new_action}')
                     high_action = new_action
                 triplets[action_idx] = high_action
-            triplets[action_idx] = (high_action[0], high_action[1].split('Sliced')[0], high_action[2])
+            triplets[action_idx] = [high_action[0], high_action[1].split('Sliced')[0], high_action[2]]
 
         self.high_desc = high_desc
         self.low_desc = low_desc
         self.high_actions = triplets
         self.low_actions = low_actions
+        self.refine_plan()
 
     @classmethod
     def get_available_actions(cls) -> dict:
@@ -106,14 +112,11 @@ class Plan:
                 continue
             h_idx = action_chunk['high_idx']
             action = action_chunk['discrete_action']['action']
-            if 'coordinateObjectId' in action_chunk['planner_action']:
-                target = action_chunk['planner_action']['coordinateObjectId'][0]
-            else:
-                target = ''
-            if 'coordinateReceptacleObjectId' in action_chunk['planner_action']:
-                recep = action_chunk['planner_action']['coordinateReceptacleObjectId'][0]
-            else:
-                recep = ''
+
+            target = action_chunk['planner_action']['coordinateObjectId'][0] \
+                if 'coordinateObjectId' in action_chunk['planner_action'] else ''
+            recep = action_chunk['planner_action']['coordinateReceptacleObjectId'][0] \
+                if 'coordinateReceptacleObjectId' in action_chunk['planner_action'] else ''
             
             if target == '':
                 if action_chunk['discrete_action']['args'][0] != '':
@@ -148,7 +151,7 @@ class Plan:
                     low_chunk['api_action']['action'],
                     low_chunk['api_action']['objectId'].split('|')[0]))
 
-            triplets.append((action, target, recep))
+            triplets.append([action, target, recep])
             low_actions.append(low_action)
 
         goal = traj_data['turk_annotations']['anns'][r_idx]['task_desc']
@@ -182,6 +185,26 @@ class Plan:
             processed = left.split()
         # lower
         return ' '.join(processed).lower().replace('.', '')
+        
+    def refine_plan(self):
+        triplets = self.high_actions
+        for i, triplet in enumerate(triplets):
+            if triplet[2] == '':
+                if triplet[0] == 'SliceObject':
+                    target_found = False
+                    for k in triplets[i:]:
+                        if k[0] == 'PickupObject' and k[1] == triplet[1] and k[2] != '':
+                            triplet[2] = k[2]
+                            target_found = True
+                            break
+                    if not target_found:
+                        for k in triplets[i-1::-1]:
+                            if k[0] == 'PutObject' and k[1] == triplet[1]:
+                                triplet[2] = k[2]
+                                target_found = True
+                                break
+            triplets[i] = triplet
+        self.high_actions = triplets
 
     def get_final_state(self) -> list:
         """Return result alfred objs after executing plan"""
