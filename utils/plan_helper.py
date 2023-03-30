@@ -12,9 +12,10 @@ from tqdm import tqdm
 from sentence_transformers import SentenceTransformer
 from sentence_transformers import util as st_utils
 import openai
+from utils import config
 
-openai.api_key = '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'
-openai.organization = 'org-azdthpxrguDHQc2ujvxf4hTZ'
+openai.api_key = config.OPENAI['api_key']
+openai.organization = config.OPENAI['organization']
 def count_plans(plans) -> int:
     """
     Args:

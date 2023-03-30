@@ -19,6 +19,7 @@ from multiprocessing import Manager
 from multiprocessing import Pool
 import multiprocessing
 import time
+from utils import config
 
 def preprocess(s):
     # remove escape sequence
@@ -332,8 +333,8 @@ if __name__ == '__main__':
 
     if args.translation_lm in ['text-similarity-baddage-001', 'text-similarity-davinci-001']:
         import openai
-        openai.api_key = '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'
-        openai.organization = 'org-azdthpxrguDHQc2ujvxf4hTZ'
+        openai.api_key = config.OPENAI['api_key']
+        openai.organization = config.OPENAI['organization']
         save_pddl_match_gpt3(args)
     else:
         # initialize Translation LM

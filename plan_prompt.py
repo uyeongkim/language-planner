@@ -12,13 +12,13 @@ import torch
 from sentence_transformers import SentenceTransformer
 from sentence_transformers import util as st_utils
 from multiprocessing import Pool
-from utils import plan_helper
+from utils import plan_helper, config
 import parmap
 import pprint
 
 # Yonsei api key
-openai.api_key = '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'
-openai.organization = 'org-azdthpxrguDHQc2ujvxf4hTZ'
+openai.api_key = config.OPENAI['api_key']
+openai.organization = config.OPENAI['organization']
 
 def write_prompt(goal, sentences, plan_list):
     prompt = 'Make a plan to complete a given task\n\n'

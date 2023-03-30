@@ -7,10 +7,11 @@ import argparse
 import os
 import numpy as np
 from tqdm import tqdm
+from utils import config
 
 # Yonsei api key
-openai.api_key = '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'
-openai.organization = 'org-azdthpxrguDHQc2ujvxf4hTZ'
+openai.api_key = config.OPENAI['api_key']
+openai.organization = config.OPENAI['organization']
 
 # yuyeong personal api key
 # openai.api_key = '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'
