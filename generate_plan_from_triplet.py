@@ -46,7 +46,7 @@ def get_train_triplet(args):
 def update_triplet(_input):
     """upadte task2plan with one goal and plans in string sentence form"""
     task2plan, goal, plans = _input
-    available_action_dict = json.load(open('data/available_actions_in_word2.json', 'r'))
+    available_action_dict = json.load(open('data/available_actions1.json', 'r'))
     temp = {}
     
     if goal in task2plan:
@@ -59,7 +59,7 @@ def update_triplet(_input):
 def main(args):
     # paths
     train_path = 'data/triplet/train_appended.json'
-    result_path = 'data/plan/train_appended_avail2.json'
+    result_path = 'data/plan/train_appended_avail1.json'
 
     if not os.path.exists(train_path):
         goal2triplet = get_train_triplet(args)

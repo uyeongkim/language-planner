@@ -496,5 +496,7 @@ def get_action_description(triplet_list:list) -> list:
     # Grammer correction using gpt
     args = {"temp": 0, "n": 1, "max_tokens": 60, 'stop': None}
     response = get_gpt_response(prompts, args)
-    results = [c.text.split('\n')[-1].strip() for c in response.choices]
+    results = [c.text.strip() for c in response.choices]
+    if "" in results:
+        raise Exception("Null response")
     return results
