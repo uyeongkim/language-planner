@@ -481,59 +481,6 @@ class AlfredObject:
         assert self.name in AlfredObject.val_action_objects['Sliceable']
         self.sliced = True
 
-def get_gpt_response(prompt, args):
-    # Get gpt3 response
-    while True:
-        try:
-            response = openai.Completion.create(
-                model = 'text-davinci-003',
-                prompt = prompt,
-                temperature = args['temp'],
-                logprobs=1,
-                n = args['n'],
-                max_tokens = args['max_tokens'],
-                stop = args['stop']
-            )
-            break
-        except openai.error.ServiceUnavailableError:
-            print('OpenAI server got too much traffic')
-            time.sleep(0.3)
-        except openai.error.RateLimitError:
-            time.sleep(0.3)
-    if response.usage['total_tokens'] >= args['max_tokens']*0.9:
-        print('Warning: Used up to 90%'+' of max token')
-    return response
-    
-def get_action_description(action:list) -> str:
-    if action[0] == 'PickupObject':
-        if action[2] == '':
-            sentence = 'Pick up a %s'%action[1]
-        else:
-            sentence = 'Pick up a %s on %s'%(action[1], action[2])
-    elif action[0] == 'PutObject':
-        assert all([a != '' for a in action])
-        sentence = 'Put a %s on %s'%(action[1], action[2])
-    elif action[0] == 'ToggleObject':
-        sentence = 'Turn a %s on'%(action[1])
-    elif action[0] == 'HeatObject':
-        sentence = 'Heat a %s in hand'%(action[1])
-    elif action[0] == 'CoolObject':
-        sentence = 'Chill a %s in hand'%(action[1])
-    elif action[0] == 'CleanObject':
-        sentence = 'Wash a %s in hand'%(action[1])
-    elif action[0] == 'SliceObject':
-        if action[2] == '':
-            sentence = 'Cut a %s'%(action[1])
-        else:    
-            sentence = 'Cut a %s on %s'%(action[1], action[2])
-        
-    # Grammer correction using gpt
-    prompt = "Correct this to standard English:\n\n%s\n"%(sentence)
-    args = {"temp": 0, "n": 1, "max_tokens": 60, 'stop': None}
-    response = get_gpt_response(prompt, args)
-    result = response.choices[0].text.split('\n')[-1]
-    return result.strip()
-
 def tripletToString(plan:list) -> list:
     result = []
     for action in plan:

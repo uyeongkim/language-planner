@@ -432,3 +432,69 @@ class AlfredObject:
     def slice(self):
         assert self.name in AlfredObject.val_action_objects['Sliceable']
         self.sliced = True
+
+###
+# util functions
+import openai
+from utils import config
+
+openai.api_key = config.OPENAI['api_key']
+openai.organization = config.OPENAI['organization']
+
+def get_gpt_response(prompt, args):
+    """ Get gpt3 response"""
+    while True:
+        try:
+            response = openai.Completion.create(
+                model = 'text-davinci-003',
+                prompt = prompt,
+                temperature = args['temp'],
+                logprobs=1,
+                n = args['n'],
+                max_tokens = args['max_tokens'],
+                stop = args['stop']
+            )
+            break
+        except openai.error.ServiceUnavailableError:
+            print('OpenAI server got too much traffic')
+            time.sleep(0.3)
+        except openai.error.RateLimitError:
+            time.sleep(0.3)
+    if response.usage['total_tokens'] >= args['max_tokens']*0.9:
+        print('Warning: Used up to 90%'+' of max token')
+    return response
+
+def get_action_description(triplet_list:list) -> list:
+    """triplets to subgoal descripitons"""
+    prompts = []
+    for triplet in triplet_list:
+        if triplet[0] == 'PickupObject':
+            if triplet[2] == '':
+                sentence = 'Pick up a %s'%triplet[1]
+            else:
+                sentence = 'Pick up a %s from %s'%(triplet[1], triplet[2])
+        elif triplet[0] == 'PutObject':
+            assert all([a != '' for a in triplet])
+            sentence = 'Put a %s on %s'%(triplet[1], triplet[2])
+        elif triplet[0] == 'ToggleObject':
+            sentence = 'Turn a %s on'%(triplet[1])
+        elif triplet[0] == 'HeatObject':
+            sentence = 'Heat a %s in hand'%(triplet[1])
+        elif triplet[0] == 'CoolObject':
+            sentence = 'Chill a %s in hand'%(triplet[1])
+        elif triplet[0] == 'CleanObject':
+            sentence = 'Wash a %s in hand'%(triplet[1])
+        elif triplet[0] == 'SliceObject':
+            if triplet[2] == '':
+                sentence = 'Cut a %s'%(triplet[1])
+            else:    
+                sentence = 'Cut a %s on %s'%(triplet[1], triplet[2])
+        
+        prompt = "Correct this to standard English:\n\n%s\n"%(sentence)
+        prompts.append(prompt)
+        
+    # Grammer correction using gpt
+    args = {"temp": 0, "n": 1, "max_tokens": 60, 'stop': None}
+    response = get_gpt_response(prompts, args)
+    results = [c.text.split('\n')[-1].strip() for c in response.choices]
+    return results
