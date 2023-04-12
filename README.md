@@ -5,9 +5,10 @@ Modified by Yuyeong Kim.
 2. ALFRED data should reside in `data/alfred_data` folder.
 
 # Preparation
-## Generate Available actions
+## Generate Sentence described Plan in train data
 ~~~
-python actions.py
+python actions.py                           # transfer each triplet to sentence
+python generate_plan_from_triplet.py        # match each triplet to sentence in train data
 ~~~
 ## Retrieve simialr plans from train data
 ~~~
