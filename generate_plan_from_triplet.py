@@ -15,6 +15,7 @@ import numpy as np
 import argparse
 import utils.plan_module as planner
 import pprint
+import sys
 
 def get_train_triplet(args):
     alfred_data_path = 'data/alfred_data/json_2.1.0/train'
@@ -33,10 +34,17 @@ def get_train_triplet(args):
                     pp = pprint.PrettyPrinter()
                     pp.pprint(plan.high_actions)
                     print()
+                    time.sleep(1)
+                    if len(train_triplet) == 5:
+                        return
+
                 if args.appended:
                     goal = f"{ann['task_desc']}[SEP]{' '.join(ann['high_descs'])}"
                 else:
                     goal = ann['task_desc']
+                if args.debug:
+                    print(goal)
+
                 if goal in train_triplet:
                     train_triplet[goal].append(plan.high_actions)
                 else:
@@ -58,11 +66,12 @@ def update_triplet(_input):
 
 def main(args):
     # paths
-    train_path = 'data/triplet/train_appended.json'
-    result_path = 'data/plan/train_appended_avail1.json'
+    train_path = 'data/triplet/train%s.json'%('_appended' if args.appended else '')
+    result_path = 'data/plan/train%s_avail1.json'%('_appended' if args.appended else '')
 
     if not os.path.exists(train_path):
         goal2triplet = get_train_triplet(args)
+        assert goal2triplet is not None
         json.dump(goal2triplet, open(train_path, 'w'), indent=4)
     else:
         goal2triplet = json.load(open(train_path, 'r'))
