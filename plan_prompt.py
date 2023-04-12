@@ -199,7 +199,7 @@ def main(args):
     sentence_match = load_match(sentence_match_file, args)
     
     # Resume # plan match에 prompt도 저장
-    plan_match = update_match({}, save_file)œ
+    plan_match = update_match({}, save_file)
     # start generate plan match
     for goal, sentence_dict in sentence_match.items():
         if goal in plan_match:
