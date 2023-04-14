@@ -15,6 +15,8 @@ from multiprocessing import Pool
 from utils import plan_helper, config
 import parmap
 import pprint
+import datetime
+from utils import plan_module
 
 # Yonsei api key
 openai.api_key = config.OPENAI['api_key']
@@ -90,7 +92,7 @@ def test_prompt(sentences, plan_list, cos_scores, sim_test_goals, diff_test_goal
     print('\n\n')
     return sim_suc/sim_cnt*100, diff_suc/diff_cnt*100, prompt
 
-def get_prompts(sentence_dict, args):
+def get_prompts(goal, sentence_dict, args):
     """
     Args:
         sentence_dict: 
@@ -99,6 +101,8 @@ def get_prompts(sentence_dict, args):
     Return:
         chosen prompt(str)
     """
+    if args.vanilla:
+        return [write_prompt(goal, sentence_dict['similar']['goal'], sentence_dict['similar']['plan'])]
 
     def _get_similar_info(sim_dict, splits):
         sentences = np.array([])
@@ -150,19 +154,11 @@ def load_match(file_path, args):
     with open(file_path, 'r') as f:
         match = json.load(f)
         temp = {}
-        # appended
-        for goal in match:
-            temp[goal.split('[SEP]')[0]] = match[goal]
-        match = temp
-
-        if args.debug:
-            sample = json.load(open('data/%s-goalSample.json'%args.split, 'r'))
-            vals = [match[k] for k in sample]
-            match = dict(zip(sample, vals))
     return match
 
 def update_match(match, file_path):
-    if os.path.exists(file_path):    
+    if os.path.exists(file_path):
+        print('Resuming work.')
         with open(file_path, 'r') as f:
             match = json.load(f)
     else:
@@ -174,79 +170,103 @@ def update_match(match, file_path):
 #       -- frequency_penalty는 등장한 비율로 하는데, 이건 다양한 plan을 만들어야 하는 입장에서 좋은 것 같지는 않음
 
 # TRIPLET GT
-SEEN_GT = json.load(open('data/triplet/val_seen_tripletPlan.json', 'r'))
-UNSEEN_GT = json.load(open('data/triplet/val_unseen_tripletPlan.json', 'r'))
-TRAIN_GT = json.load(open('data/triplet/train_tripletPlan.json', 'r'))
+# SEEN_GT = json.load(open('data/triplet/val_seen_tripletPlan.json', 'r'))
+# UNSEEN_GT = json.load(open('data/triplet/val_unseen_tripletPlan.json', 'r'))
+TRAIN_GT = json.load(open('data/triplet/train.json', 'r'))
 
 ROBERTA_COEFF = 1
 ARGS = {
     "temp": 0.9,
-    "n": 10, 
+    "n": 3,
     "stop": ':', 
     "max_tokens": 900
     }
 
 def main(args):
+    # Load sentence_match
     # sentence: [sim: [goals, scores], diff: [goals, scores]]
     sentence_match_file= 'result/alfred/roberta/%s-sentence@%d-%d.json'%(args.split, args.k, int(args.k/4))
     print('Sentence match loaded from [%s]'%sentence_match_file)
-    save_file = 'result/alfred/prompt20/roberta_penalty/%s-plan_14.json'%args.split
-    print('Result file will be saved at [%s]'%save_file)
-
+    timestamp = datetime.datetime.now()
+    save_file = 'result/alfred/prompt%s/roberta_penalty/%s_%s.json'%(args.k, args.split, timestamp.strftime("%m.%d/%H.%M"))
+    print('Result file will be saved in [%s]'%save_file)
     if not os.path.exists(os.path.split(save_file)[0]):
         os.makedirs(os.path.split(save_file)[0], exist_ok=True)
-
     sentence_match = load_match(sentence_match_file, args)
-    
-    # Resume # plan match에 prompt도 저장
     plan_match = update_match({}, save_file)
-    # start generate plan match
+    pp = pprint.PrettyPrinter()
+
+    # Start generating plan match
     for goal, sentence_dict in sentence_match.items():
         if goal in plan_match:
             continue
         print('\nGoal: %s\n'%goal)
         # choose best prompt out of 20 sentences
-        prompts = get_prompts(sentence_dict, args)
-
-        res
+        prompts = get_prompts(goal, sentence_dict, args)
+        n_gpu = 8
+        n_process = min(ARGS['n'], 10)
         for j, prompt in enumerate(prompts):
             # Get gpt3 response
-            response = plan_helper.get_gpt_response(prompt, ARGS)
-
-            cos_scores = []
-            plans = []
-            for i, _prompt in enumerate(response.choices):
-                plan, cos_score = plan_helper.gptResponseToAlfredPlan(_prompt.text, available_actions)
-                cos_scores.append(cos_score)
-                plans.append(plan)
+            response = plan_module.get_gpt_response(prompt, ARGS)
+            packed_plan_score = parmap.starmap(plan_helper.gptResponseToAlfredPlan, \
+                list(zip([c.text for c in response.choices], [pid%n_gpu for pid in range(n_process)])), \
+                    pm_pbar=True, pm_processes=n_process)
+            packed_plan_score = np.array(packed_plan_score)
+            cos_scores = packed_plan_score[:, 1, :]
+            plans = packed_plan_score[:, 0, :]
+            plans = plan_helper.encode_plans(plans)
         
-        num_plan = plan_helper.count_plans(plans)
-        print('# of plan: %d / %d * %d'%(num_plan, ARGS["n"], len(prompts)))
-        if num_plan == 1:
-            sort_idx = list(range(N))
-            all_same += 1
-        else:
-            sort_idx = list(range(N))
-            # sort_idx = choose_(response.choices, cos_scores)
+        # num_plan = plan_helper.count_plans(plans)
+        uniq_plans, indexs, votes = np.unique(plans, axis=0, return_counts=True, return_inverse=True)
+        num_plans = uniq_plans.shape[0]
+        
+        sort_idx = np.argsort(votes)
+        # sort_idx = choose_(response.choices, cos_scores)
+        prompt_probs = [sum(response.choices[i].logprobs['token_logprobs']) for i in range(ARGS['n'])]
+        
+        pp.pprint(prompt_probs)
+        prompt_probs = np.exp(np.array(prompt_probs))
+        plan_probs = np.zeros(votes.shape, dtype=np.float32)
+        plan_cos_scores = np.zeros(votes.shape, dtype=np.float32)
+        
+        pp.pprint(prompt_probs)
+        
+        pp.pprint(indexs)
+        for i in range(num_plans):
+            plan_probs[i] = np.sum(prompt_probs[np.argwhere(indexs == i)])
+            plan_cos_scores[i] = np.sum(cos_scores[np.argwhere(indexs == i), :])
 
         # Process result string to dict
-        _gpt_plan_match[goal] = {"plan": [plans[i] for i in sort_idx], \
-            "prompt_logp": [sum(response.choices[i].logprobs['token_logprobs']) for i in sort_idx], \
-                "trans_cossim": [cos_scores[i] for i in sort_idx]}
+        uniq_plans = plan_helper.decode_plans(uniq_plans)
+        plan_match[goal] = {
+            "plan": [uniq_plans[i] for i in sort_idx],
+            "vote": [votes[i] for i in sort_idx],
+            "prompt_logp": [np.log(np.array(plan_probs))[i] for i in sort_idx],
+            "trans_cossim": [plan_cos_scores for i in sort_idx]
+        }
+        pp.pprint((goal, plan_match[goal]))
   
         # Save pddl match
-        if len(list(_gpt_plan_match.keys())) > 5:
-            plan_match = update_match(_gpt_plan_match, save_file)
+        if len(list(plan_match.keys())) > 5:
+            plan_match = update_match(plan_match, save_file)
             
-        plan_match = update_match(_gpt_plan_match, save_file)
+        plan_match = update_match(plan_match, save_file)
         json.dump(plan_match, open(save_file, 'w'), indent=4)
     
     print('Saved Result in %s'%save_file)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--debug', action='store_true')
+    # base
     parser.add_argument('--split', required=True)
     parser.add_argument('--k', type=int, required=True)
+    parser.add_argument('--s_idx', type=int, default=0)
+    parser.add_argument('--e_idx', type=int, default=-1)
+
+    # module
+    parser.add_argument('--vanilla', action='store_true')
+
+    # debug
+    parser.add_argument('--debug', action='store_true')
     args = parser.parse_args()
     main(args)
