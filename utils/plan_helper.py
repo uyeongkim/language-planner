@@ -18,7 +18,7 @@ from data.alfred_data import constants
 openai.api_key = config.OPENAI['api_key']
 openai.organization = config.OPENAI['organization']
 
-HIGH_ACTIONS = ['PickupObject', 'PutObject', 'HeatObject', 'CleanObject', 'CleanObject', 'ToggleObject', 'SliceObject']
+HIGH_ACTIONS = [''] + ['PickupObject', 'PutObject', 'HeatObject', 'CleanObject', 'CleanObject', 'ToggleObject', 'SliceObject']
 OBJS = [''] + constants.OBJECTS
 
 def count_plans(plans) -> int:
@@ -35,6 +35,7 @@ def count_plans(plans) -> int:
     return len(repr)
 
 def encode_plans(plans) -> np.array:
+    maxlen = max(len(plan) for plan in plans)
     temp = []
     for plan in plans:
         for triplet in plan:
@@ -43,6 +44,10 @@ def encode_plans(plans) -> np.array:
                 OBJS.index(triplet[1]),
                 OBJS.index(triplet[2])])
             temp.append(np_triplet)
+            
+        for _ in range(maxlen-len(plan)):
+            print(f"{maxlen-len(plan)} should be appended")
+            temp.append(np.zeros((3, ), dtype=np.int32))
     return np.reshape(np.vstack(temp), (len(plans), -1, 3))
 
 def decode_plans(plans) -> list:

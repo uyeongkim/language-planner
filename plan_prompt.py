@@ -17,6 +17,7 @@ import parmap
 import pprint
 import datetime
 from utils import plan_module
+import pickle
 
 # Yonsei api key
 openai.api_key = config.OPENAI['api_key']
@@ -158,9 +159,8 @@ def load_match(file_path, args):
 
 def update_match(match, file_path):
     if os.path.exists(file_path):
-        print('Resuming work.')
-        with open(file_path, 'r') as f:
-            match = json.load(f)
+        with open(file_path, 'rb') as f:
+            match = pickle.load(f)
     else:
         match = {}
     return match
@@ -177,9 +177,8 @@ TRAIN_GT = json.load(open('data/triplet/train.json', 'r'))
 ROBERTA_COEFF = 1
 ARGS = {
     "temp": 0.9,
-    "n": 3,
     "stop": ':', 
-    "max_tokens": 900
+    "max_tokens": 2000
     }
 
 def main(args):
@@ -187,54 +186,67 @@ def main(args):
     # sentence: [sim: [goals, scores], diff: [goals, scores]]
     sentence_match_file= 'result/alfred/roberta/%s-sentence@%d-%d.json'%(args.split, args.k, int(args.k/4))
     print('Sentence match loaded from [%s]'%sentence_match_file)
-    timestamp = datetime.datetime.now()
-    save_file = 'result/alfred/prompt%s/roberta_penalty/%s_%s.json'%(args.k, args.split, timestamp.strftime("%m.%d/%H.%M"))
+    save_folder = f'result/alfred/prompt{args.k}/roberta_penalty'
+    fid = len(os.listdir(save_folder))-1 if args.resume else len(os.listdir(save_folder))
+    save_file = os.path.join(save_folder, f'{args.split}_{fid}.p')
     print('Result file will be saved in [%s]'%save_file)
     if not os.path.exists(os.path.split(save_file)[0]):
         os.makedirs(os.path.split(save_file)[0], exist_ok=True)
     sentence_match = load_match(sentence_match_file, args)
     plan_match = update_match({}, save_file)
     pp = pprint.PrettyPrinter()
+    
+    print(f'Generate {args.n} Completions')
+    ARGS['n'] = args.n
 
     # Start generating plan match
-    for goal, sentence_dict in sentence_match.items():
+    for goal, sentence_dict in tqdm(sentence_match.items()):
         if goal in plan_match:
             continue
         print('\nGoal: %s\n'%goal)
         # choose best prompt out of 20 sentences
         prompts = get_prompts(goal, sentence_dict, args)
-        n_gpu = 8
-        n_process = min(ARGS['n'], 10)
-        for j, prompt in enumerate(prompts):
-            # Get gpt3 response
+        n_gpu = torch.cuda.device_count()
+        n_process = min(args.n, 10)
+        
+        # Get gpt3 response
+        for prompt in prompts:
+            # 그냥 prompts 받도록 수정
             response = plan_module.get_gpt_response(prompt, ARGS)
+            pp.pprint([c.text for c in response.choices])
+            print()
             packed_plan_score = parmap.starmap(plan_helper.gptResponseToAlfredPlan, \
                 list(zip([c.text for c in response.choices], [pid%n_gpu for pid in range(n_process)])), \
-                    pm_pbar=True, pm_processes=n_process)
-            packed_plan_score = np.array(packed_plan_score)
-            cos_scores = packed_plan_score[:, 1, :]
-            plans = packed_plan_score[:, 0, :]
-            plans = plan_helper.encode_plans(plans)
+                    pm_processes=n_process)
+            packed_plan_score = np.array(packed_plan_score, dtype=object)
+            try:
+                cos_scores = packed_plan_score[:, 1]
+                maxlen = max(len(r) for r in cos_scores)
+                cos_scores = np.vstack([np.pad(np.array(r, dtype=np.float32), (0, maxlen-len(r)), \
+                    'constant', constant_values=-1) for r in cos_scores])
+                plans = packed_plan_score[:, 0]
+                
+                plans = plan_helper.encode_plans(plans)
+            except Exception as e:
+                print('Packed plan and score')
+                pp.pprint(packed_plan_score)
+                raise e
         
-        # num_plan = plan_helper.count_plans(plans)
         uniq_plans, indexs, votes = np.unique(plans, axis=0, return_counts=True, return_inverse=True)
         num_plans = uniq_plans.shape[0]
         
-        sort_idx = np.argsort(votes)
-        # sort_idx = choose_(response.choices, cos_scores)
-        prompt_probs = [sum(response.choices[i].logprobs['token_logprobs']) for i in range(ARGS['n'])]
+        # TODO: 내 sorting method 만들어야 함
+        sort_idx = np.argsort(votes)[::-1]
+        prompt_probs = [sum(response.choices[i].logprobs['token_logprobs']) for i in range(args.n)]
         
-        pp.pprint(prompt_probs)
         prompt_probs = np.exp(np.array(prompt_probs))
         plan_probs = np.zeros(votes.shape, dtype=np.float32)
-        plan_cos_scores = np.zeros(votes.shape, dtype=np.float32)
+        plan_cos_scores = np.zeros((votes.shape[0], cos_scores.shape[1]), dtype=np.float32)
         
-        pp.pprint(prompt_probs)
-        
-        pp.pprint(indexs)
         for i in range(num_plans):
-            plan_probs[i] = np.sum(prompt_probs[np.argwhere(indexs == i)])
-            plan_cos_scores[i] = np.sum(cos_scores[np.argwhere(indexs == i), :])
+            selection = np.argwhere(indexs == i).flatten()
+            plan_probs[i] = np.sum(prompt_probs[selection])
+            plan_cos_scores[i] = np.sum(cos_scores[selection, :], axis=0)
 
         # Process result string to dict
         uniq_plans = plan_helper.decode_plans(uniq_plans)
@@ -242,16 +254,16 @@ def main(args):
             "plan": [uniq_plans[i] for i in sort_idx],
             "vote": [votes[i] for i in sort_idx],
             "prompt_logp": [np.log(np.array(plan_probs))[i] for i in sort_idx],
-            "trans_cossim": [plan_cos_scores for i in sort_idx]
+            "trans_cossim": [plan_cos_scores[i] for i in sort_idx]
         }
         pp.pprint((goal, plan_match[goal]))
   
         # Save pddl match
-        if len(list(plan_match.keys())) > 5:
-            plan_match = update_match(plan_match, save_file)
+        if len(list(plan_match.keys())) % 5 == 1:
+            pickle.dump(plan_match, open(save_file, 'wb'))
             
         plan_match = update_match(plan_match, save_file)
-        json.dump(plan_match, open(save_file, 'w'), indent=4)
+        pickle.dump(plan_match, open(save_file, 'wb'))
     
     print('Saved Result in %s'%save_file)
 
@@ -260,13 +272,15 @@ if __name__ == '__main__':
     # base
     parser.add_argument('--split', required=True)
     parser.add_argument('--k', type=int, required=True)
+    parser.add_argument('--n', type=int, required=True)
     parser.add_argument('--s_idx', type=int, default=0)
     parser.add_argument('--e_idx', type=int, default=-1)
 
     # module
     parser.add_argument('--vanilla', action='store_true')
 
-    # debug
+    # run
     parser.add_argument('--debug', action='store_true')
+    parser.add_argument('--resume', action='store_true')
     args = parser.parse_args()
     main(args)

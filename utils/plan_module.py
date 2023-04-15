@@ -10,6 +10,7 @@ from sentence_transformers import SentenceTransformer
 from sentence_transformers import util as st_utils
 import numpy as np
 from data.alfred_data import constants
+import time
 
 class Plan:
     """Generalize plan generated from traj_data, gpt response, and list of triplets"""
@@ -459,6 +460,9 @@ def get_gpt_response(prompt, args):
             print('OpenAI server got too much traffic')
             time.sleep(0.3)
         except openai.error.RateLimitError:
+            time.sleep(0.3)
+        except openai.error.APIConnectionError:
+            print('OPENAI API connection Error occured')
             time.sleep(0.3)
     if response.usage['total_tokens'] >= args['max_tokens']*0.9:
         print('Warning: Used up to 90%'+' of max token')
