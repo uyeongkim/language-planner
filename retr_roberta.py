@@ -51,7 +51,7 @@ def main(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     lm = SentenceTransformer('stsb-roberta-large').to(device)
 
-    plan_example_path = 'data/plan/train_appended_avail1.json' # processed goals
+    plan_example_path = 'data/plan/train%s_avail1.json'%('_appended' if args.appended else '') # processed goals
     if args.appended != ('appended' in plan_example_path):
         raise Exception("Goal exmaple file should have appended goals")
     print('Train data retrieved from %s'%plan_example_path)

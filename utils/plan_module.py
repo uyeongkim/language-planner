@@ -464,6 +464,11 @@ def get_gpt_response(prompt, args):
         except openai.error.APIConnectionError:
             print('OPENAI API connection Error occured')
             time.sleep(0.3)
+        except openai.errir.APIError:
+            time.sleep(1)
+        except Exception as e:
+            print(prompt)
+            raise e
     if response.usage['total_tokens'] >= args['max_tokens']*0.9:
         print('Warning: Used up to 90%'+' of max token')
     return response
@@ -472,6 +477,10 @@ def get_action_description(triplet_list:list) -> list:
     """triplets to subgoal descripitons"""
     prompts = []
     for triplet in triplet_list:
+        if triplet[1] == 'Boots':
+            triplet[1] == 'a pair of boots'
+        if triplet[2] == 'Boots':
+            triplet[2] == 'a pair of boots'
         if triplet[0] == 'PickupObject':
             if triplet[2] == '':
                 sentence = 'Pick up a %s'%triplet[1]
@@ -498,7 +507,7 @@ def get_action_description(triplet_list:list) -> list:
         prompts.append(prompt)
         
     # Grammer correction using gpt
-    args = {"temp": 0, "n": 1, "max_tokens": 60, 'stop': None}
+    args = {"temp": 0, "n": 1, "max_tokens": 80, 'stop': None}
     response = get_gpt_response(prompts, args)
     results = [c.text.strip() for c in response.choices]
     if "" in results:

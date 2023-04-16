@@ -278,6 +278,7 @@ if __name__ == '__main__':
 
     # module
     parser.add_argument('--vanilla', action='store_true')
+    parser.add_argument('--penalty', action='store_true')
 
     # run
     parser.add_argument('--debug', action='store_true')

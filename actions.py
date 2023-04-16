@@ -6,8 +6,8 @@ import pprint
 from tqdm import tqdm
 
 ACTIONS = ['PickupObject', 'PutObject', 'SliceObject', 'CleanObject', 'HeatObject', 'CoolObject', 'ToggleObject']
-OBJECTS = constants.OBJECTS
-RECEPS = constants.RECEPTACLES | {""}
+OBJECTS = (set(constants.OBJECTS) - constants.RECEPTACLES) | constants.MOVABLE_RECEPTACLES_SET
+RECEPS = (constants.RECEPTACLES | {""}) & set(constants.OBJECTS)
 
 result_path = 'data/available_actions1.json'
 buffer_size = 20 # num of parallel request
@@ -42,11 +42,13 @@ for action in ACTIONS:
                 triplets.append(triplet)
 
 len_triplets = len(triplets)
+checkpoint = 0
 for i in tqdm(range(int(len_triplets/buffer_size)+1)):
     _triplets = triplets[buffer_size*i:buffer_size*(i+1)]
     sentences = plan_module.get_action_description(_triplets)
     avaiable_actions.update(dict(zip(sentences, _triplets)))
-    if len(avaiable_actions) % 1000 == 1:
-        json.dump(avaiable_actions, open(result_path, 'w'), indent=4) 
+    if len(avaiable_actions) > checkpoint * 1000:
+        checkpoint += 1
+        json.dump(avaiable_actions, open(result_path, 'w'), indent=4)
     
 json.dump(avaiable_actions, open(result_path, 'w'), indent=4)

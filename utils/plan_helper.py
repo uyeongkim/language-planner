@@ -18,7 +18,7 @@ from data.alfred_data import constants
 openai.api_key = config.OPENAI['api_key']
 openai.organization = config.OPENAI['organization']
 
-HIGH_ACTIONS = [''] + ['PickupObject', 'PutObject', 'HeatObject', 'CleanObject', 'CleanObject', 'ToggleObject', 'SliceObject']
+HIGH_ACTIONS = [''] + ['PickupObject', 'PutObject', 'HeatObject', 'CleanObject', 'CoolObject', 'ToggleObject', 'SliceObject']
 OBJS = [''] + constants.OBJECTS
 
 def count_plans(plans) -> int:
