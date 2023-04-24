@@ -135,36 +135,15 @@ def get_available_action_dict():
     actions = json.load(open('data/available_actions.json', 'r'))
     return actions
 
-# def roberta_penalty(roberta, gpt_logp):
-#     avg_log_roberta = np.mean(np.log(np.array(roberta)))
-#     return  gpt_logp + ROBERTA_COEFF*avg_log_roberta
-
-# def choose_(prompts, cos_scores):
-#     penalty = np.array([])
-#     for i, prompt in enumerate(prompts):
-#         gpt_logp = 0
-#         for j, t in enumerate(prompt.logprobs.tokens):
-#             if prompt.logprobs.tokens[j-1] == '\n' and not prompt.logprobs.tokens[j].isdigit():
-#                 gpt_logp = sum(prompt.logprobs['token_logprobs'][:j])
-#         if gpt_logp == 0:
-#             gpt_logp = sum(prompt.logprobs['token_logprobs'])
-#         penalty = np.append(penalty, np.array([roberta_penalty(cos_scores[i], gpt_logp)]))
-#     return np.argsort(penalty)
-
-def load_match(file_path, args):
-    with open(file_path, 'r') as f:
-        match = json.load(f)
-        temp = {}
-    return match
-
-def update_match(match, file_path):
-    if os.path.exists(file_path):
-        with open(file_path, 'rb') as f:
-            match = pickle.load(f)
+def update_match(match, save_file):
+    if os.path.exists(save_file):
+        saved = pickle.load(open(save_file, 'rb'))
     else:
-        match = {}
+        saved = {}
+    match.update(saved)
+    pickle.dump(match, open(save_file, 'wb'))
     return match
-
+    
 # TODO: in hand filtering and continuity - in_hand probability를 곱해주면?
 # TODO: presence_penalty를 음수로 주면 예시에 있던 단어를 더 많이 쓰도록 하므로 예시 밖의 단어를 가져올 확률이 적어짐
 #       -- frequency_penalty는 등장한 비율로 하는데, 이건 다양한 plan을 만들어야 하는 입장에서 좋은 것 같지는 않음
@@ -197,7 +176,7 @@ def main(args):
     print('Result file will be saved in [%s]'%save_file)
     if not os.path.exists(os.path.split(save_file)[0]):
         os.makedirs(os.path.split(save_file)[0], exist_ok=True)
-    sentence_match = load_match(sentence_match_file, args)
+    sentence_match = json.load(open(sentence_match_file, 'r'))
     plan_match = update_match({}, save_file)
     pp = pprint.PrettyPrinter()
     
@@ -265,10 +244,9 @@ def main(args):
   
         # Save pddl match
         if len(list(plan_match.keys())) % 5 == 1:
-            pickle.dump(plan_match, open(save_file, 'wb'))
+            update_match(plan_match, save_file)
             
-        plan_match = update_match(plan_match, save_file)
-        pickle.dump(plan_match, open(save_file, 'wb'))
+    update_match(plan_match, save_file)
     
     print('Saved Result in %s'%save_file)
 

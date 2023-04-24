@@ -18,7 +18,7 @@ class Plan:
     HIGH_INTERACT_ACTIONS = \
         ['HeatObject', 'CoolObject', 'CleanObject', 'ToggleObject', 'SliceObject']
     HIGH_ACTIONS = ['PickupObject', 'PutObject', 'HeatObject', 'CleanObject', 'CleanObject', 'ToggleObject', 'SliceObject']
-    def __init__(self, high_desc=None, low_desc=None, triplets=None, low_actions=None):
+    def __init__(self, high_desc=None, low_desc=None, triplets=None, low_actions=None, refine=False):
         # check triplet validity
         for action_idx, high_action in enumerate(triplets):
             if high_action[0] in Plan.HIGH_INTERACT_ACTIONS:
@@ -30,7 +30,8 @@ class Plan:
                     constants.VAL_ACTION_OBJECTS[
                         ['Heatable', 'Coolable', 'Cleanable', 'Toggleable', 'Sliceable'][Plan.HIGH_INTERACT_ACTIONS.index(high_action[0])]]:
                     raise Exception(f"{high_action[1]} is not {high_action[0]}-able.")
-            assert high_action[2] in constants.RECEPTACLES | {'0', '', 'FloorLamp', 'DeskLamp'}
+            if high_action[2] not in constants.RECEPTACLES | {'0', '', 'FloorLamp', 'DeskLamp'}:
+                raise Exception(f'{high_action[2]} can\'t be in third pos')
             if high_action[0] == 'PutObject':
                 # change (Put, recep, recep) to (Put, obj, recep)
                 if high_action[1] in constants.RECEPTACLES and (high_action[1] == high_action[2] or high_action[2] == '0'):
@@ -47,7 +48,8 @@ class Plan:
         self.low_desc = low_desc
         self.high_actions = triplets
         self.low_actions = low_actions
-        self.refine_plan()
+        if refine:
+            self.refine_plan()
 
     @classmethod
     def get_available_actions(cls) -> dict:
@@ -328,6 +330,7 @@ class Plan:
     def is_plan_fulfilled(self, task_type:str, params:dict) -> bool:
         """Check if the plan fulfilled task requirement"""
         if not self.is_executable():
+            print(self.high_actions)
             raise Exception('This plan is not executable')
         seen_objs = self.get_final_state()
         mrecep, target = [], []
@@ -360,10 +363,10 @@ class Plan:
             and not any([t.cold for t in target])\
                 and not any([t.recep == params['parent_target'] for t in target]):
             return False
-        if task_type == 'pick_and_place_with_movable_recep'\
-            and not any([m.recep == params['parent_target'] for m in mrecep])\
-                and not any([t.recep == params['mrecep_target'] for t in target]):
-            return False
+        if task_type == 'pick_and_place_with_movable_recep':
+            if not any([m.recep == params['parent_target'] for m in mrecep])\
+                or not any([t.recep == params['mrecep_target'] for t in target]):
+                return False
         return True
 
 class AlfredObject:
