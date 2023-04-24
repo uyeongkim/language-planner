@@ -40,7 +40,6 @@ def update_match(match, file_path):
     if not os.path.exists(file_path):
         saved_match = {}
     else:
-        print('Saved result file found')
         saved_match = json.load(open(file_path, 'r'))
     saved_match.update(match)
     json.dump(saved_match, open(file_path, 'w'), indent=4)

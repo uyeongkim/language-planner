@@ -186,8 +186,13 @@ def main(args):
     # sentence: [sim: [goals, scores], diff: [goals, scores]]
     sentence_match_file= 'result/alfred/roberta/%s-sentence@%d-%d.json'%(args.split, args.k, int(args.k/4))
     print('Sentence match loaded from [%s]'%sentence_match_file)
-    save_folder = f'result/alfred/prompt{args.k}/roberta_penalty'
-    fid = len(os.listdir(save_folder))-1 if args.resume else len(os.listdir(save_folder))
+    method_desc = 'vanilla' if args.vanilla else 'penalty'
+    save_folder = 'result/alfred/prompt%s/%s'%(args.k, method_desc)
+    if os.path.exists(save_folder):
+        files = [f for f in os.listdir(save_folder) if args.split in f]
+        fid = len(files)-1 if args.resume else len(files)
+    else:
+        fid = 0
     save_file = os.path.join(save_folder, f'{args.split}_{fid}.p')
     print('Result file will be saved in [%s]'%save_file)
     if not os.path.exists(os.path.split(save_file)[0]):
