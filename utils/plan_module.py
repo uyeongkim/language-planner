@@ -467,7 +467,7 @@ def get_gpt_response(prompt, args):
         except openai.error.APIConnectionError:
             print('OPENAI API connection Error occured')
             time.sleep(0.3)
-        except openai.errir.APIError:
+        except openai.error.APIError:
             time.sleep(1)
         except Exception as e:
             print(prompt)

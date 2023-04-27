@@ -157,7 +157,7 @@ ROBERTA_COEFF = 1
 ARGS = {
     "temp": 0.9,
     "stop": ':', 
-    "max_tokens": 2000
+    "max_tokens": 1500
     }
 
 def main(args):
@@ -258,6 +258,7 @@ if __name__ == '__main__':
     parser.add_argument('--n', type=int, required=True)
     parser.add_argument('--s_idx', type=int, default=0)
     parser.add_argument('--e_idx', type=int, default=-1)
+    parser.add_argument('--appended', action='store_true')
 
     # module
     parser.add_argument('--vanilla', action='store_true')
