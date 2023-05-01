@@ -463,12 +463,18 @@ def get_gpt_response(prompt, args):
             print('OpenAI server got too much traffic')
             time.sleep(0.3)
         except openai.error.RateLimitError:
+            print('Reached Rate Limit')
             time.sleep(0.3)
         except openai.error.APIConnectionError:
             print('OPENAI API connection Error occured')
             time.sleep(0.3)
         except openai.error.APIError:
+            print('API Error')
             time.sleep(1)
+        except openai.error.InvalidRequestError as e:
+            prompt_length = int(re.findall(r'\d+', e.user_message)[2])
+            args['max_tokens'] = 4097-prompt_length
+            print(f"Max token resized to {args['max_tokens']}")
         except Exception as e:
             print(prompt)
             raise e

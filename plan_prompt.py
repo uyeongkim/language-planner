@@ -196,6 +196,8 @@ def main(args):
         # Get gpt3 response
         for prompt in prompts:
             # 그냥 prompts 받도록 수정
+            now = datetime.datetime.now()
+            print(f"timestamp {now.strftime('%H:%M:%S')}")
             response = plan_module.get_gpt_response(prompt, ARGS)
             pp.pprint([c.text for c in response.choices])
             print()
@@ -268,4 +270,6 @@ if __name__ == '__main__':
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--resume', action='store_true')
     args = parser.parse_args()
+    if args.resume:
+        print('Resuming')
     main(args)
