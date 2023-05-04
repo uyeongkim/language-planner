@@ -5,7 +5,7 @@ import os
 import pprint
 import argparse
 
-def choose_plan(plans:list):
+def find_executable_plan(plans:list):
     """
     choose plan with most vosts from executables
 
@@ -14,17 +14,15 @@ def choose_plan(plans:list):
     """
     def remove_padded_action(triplets:list) -> list:
         return list(filter(['', '', ''].__ne__, triplets))
-    executable_plans = []
-    for trip_plan in plans:
+    executable = []
+    for p_idx, trip_plan in enumerate(plans):
         try:
             plan = Plan(triplets=remove_padded_action(trip_plan))
         except:
             continue
         if plan.is_executable():
-            executable_plans.append(plan)
-    if len(executable_plans) != 0:
-        return executable_plans[0]
-    return None
+            executable.append(plan)
+    return executable
 
 def main(args):
     pp = pprint.PrettyPrinter()
@@ -37,8 +35,21 @@ def main(args):
     err_cnt = 0
     ft_cnt = 0
     for cc, goal in enumerate(plan_data):
-        best_plan = choose_plan(plan_data[goal]['plan'])
-        if best_plan is None:
+        # find executable plans
+        executable_plans = find_executable_plan(plan_data[goal]['plan'])
+        
+        # get gt traj_data
+        for ep in os.listdir(root):
+            for trial in os.listdir(os.path.join(root, ep)):    
+                traj_data = json.load(open(os.path.join(root, ep, trial, 'traj_data.json'), 'r'))
+                anns = [ann['task_desc'] for ann in traj_data['turk_annotations']['anns']]
+                if goal not in anns:
+                    continue
+                task_type = traj_data['task_type']
+                pddl_param = traj_data['pddl_params']
+        
+        # if no executables
+        if len(executable_plans) == 0:
             cnt += 1
             err_cnt += 1
             if args.verbose:
@@ -51,17 +62,11 @@ def main(args):
                 print('\n'+'-'*30+'\n')
             continue
         
+        # just the first one
+        best_plan = executable_plans[0]
         best_plan.high_desc = goal
         
-        for ep in os.listdir(root):
-            for trial in os.listdir(os.path.join(root, ep)):    
-                traj_data = json.load(open(os.path.join(root, ep, trial, 'traj_data.json'), 'r'))
-                anns = [ann['task_desc'] for ann in traj_data['turk_annotations']['anns']]
-                if goal not in anns:
-                    continue
-                task_type = traj_data['task_type']
-                pddl_param = traj_data['pddl_params']
-                suc = best_plan.is_plan_fulfilled(task_type, pddl_param)
+        suc = best_plan.is_plan_fulfilled(task_type, pddl_param)
                 
         if not suc and args.verbose:
             print(cc, ':', end=' ')
@@ -85,4 +90,5 @@ if __name__ == '__main__':
     parser.add_argument('--verbose', action='store_true')
     
     args = parser.parse_args()
+    print(f"Eval file: {args.eval_file}")
     main(args)

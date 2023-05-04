@@ -456,7 +456,8 @@ def get_gpt_response(prompt, args):
                 logprobs=1,
                 n = args['n'],
                 max_tokens = args['max_tokens'],
-                stop = args['stop']
+                stop = args['stop'],
+                presence_penalty = args['presence_penalty']
             )
             break
         except openai.error.ServiceUnavailableError:
@@ -512,13 +513,79 @@ def get_action_description(triplet_list:list) -> list:
             else:    
                 sentence = 'Cut a %s on %s'%(triplet[1], triplet[2])
         
-        prompt = "Correct this to standard English:\n\n%s\n"%(sentence)
+        prompt = "Correct this in standard English grammar: \n\n%s\n"%(sentence)
         prompts.append(prompt)
         
     # Grammer correction using gpt
-    args = {"temp": 0, "n": 1, "max_tokens": 80, 'stop': None}
+    args = {"temp": 0, "n": 1, "max_tokens": 80, 'stop': None, 'presence_penalty': -1}
     response = get_gpt_response(prompts, args)
     results = [c.text.strip() for c in response.choices]
+    remove_idx = []
+    for idx, r in enumerate(response.choices):
+        test_tokens = r['logprobs']['token_logprobs']
+        test_tokens.sort()
+        test_tokens = test_tokens[:int(0.1*len(test_tokens))+1]
+        if sum(test_tokens)/len(test_tokens) < -0.50:
+            print(f"{prompts[idx]} {r.text} is not favored")
+            remove_idx.append(idx)
     if "" in results:
         raise Exception("Null response")
-    return results
+    return results, remove_idx
+
+def get_confusion(self, task_type:str, params:dict) -> bool:
+        """Check if the plan fulfilled task requirement"""
+        if not self.is_executable():
+            print(self.high_actions)
+            raise Exception('This plan is not executable')
+        seen_objs = self.get_final_state()
+        for seen_obj in seen_objs:
+            print(seen_obj.name, seen_obj.recep)
+            print(seen_obj.sliced, seen_obj.clean, seen_obj.hot, seen_obj.cold, seen_obj.in_light)
+        mrecep, target = [], []
+        for _obj in seen_objs:
+            if _obj.name == params['mrecep_target']:
+                mrecep.append(_obj)
+            if _obj.name == params['object_target']:
+                target.append(_obj)
+
+        confusion_list = {
+            'object_target': [], # [[pred, GT], [pred, GT], ...]
+            'mrecep_target': [], # [[pred, GT], [pred, GT], ...]
+            'parent_target': [], # [[pred, GT], [pred, GT], ...]
+        }
+        for obj in seen_objs:
+            if task_type in [
+                'pick_and_place_simple',
+                'pick_two_obj_and_place', 
+                'pick_clean_then_place_in_recep',
+                'pick_clean_then_place_in_recep',
+                'pick_heat_then_place_in_recep',
+                'pick_cool_then_place_in_recep',
+            ]:
+                if obj.name != params['object_target']:
+                    confusion_list['object_target'].append([obj.name, params['object_target']])
+                if obj.recep != params['parent_target']:
+                    confusion_list['parent_target'].append([obj.recep, params['parent_target']])
+            if task_type == 'look_at_obj_in_light':
+                if obj.name != params['object_target']:
+                    confusion_list['object_target'].append([obj.name, params['object_target']])
+            if task_type == 'pick_and_place_with_movable_recep':
+                # heuristic for object-mrecep-parent
+                #assert len(seen_objs) == 2
+                if len(seen_objs) == 2 and (seen_objs[0].recep == seen_objs[1].name or seen_objs[1].recep == seen_objs[0].name):
+                    if seen_objs[0].recep == seen_objs[1].name:
+                        object_target = seen_objs[0].name
+                        mrecep_target = seen_objs[0].recep
+                        parent_target = seen_objs[1].recep
+                    elif seen_objs[1].recep == seen_objs[0].name:
+                        object_target = seen_objs[1].name
+                        mrecep_target = seen_objs[1].recep
+                        parent_target = seen_objs[0].recep
+                    if object_target != params['object_target']:
+                        confusion_list['object_target'].append([object_target, params['object_target']])
+                    if mrecep_target != params['object_target']:
+                        confusion_list['mrecep_target'].append([mrecep_target, params['mrecep_target']])
+                    if parent_target != params['parent_target']:
+                        confusion_list['parent_target'].append([parent_target, params['parent_target']])
+                
+        return confusion_list
