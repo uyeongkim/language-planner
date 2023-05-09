@@ -13,3 +13,4 @@ data/*
 *.pkl
 utils/config.py
 confusion/*
+images/*
