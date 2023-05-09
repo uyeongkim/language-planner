@@ -54,7 +54,7 @@ class Plan:
     @classmethod
     def get_available_actions(cls) -> dict:
         """Get Alfred executable actions"""
-        return json.load(open('../data/available_actions.json', 'r'))
+        return json.load(open('../data/available_actions1.json', 'r'))
     @classmethod
     def from_str(cls, str_plan:str, goal='', steps=''):
         """Generate Plan from String (ex. GPT response)"""
@@ -215,7 +215,8 @@ class Plan:
         seen_objs = []
         for action in self.high_actions:
             if action[0] == 'PickupObject':
-                assert in_hand is None
+                if in_hand is not None:
+                    raise Exception(f"Error: [Pick up] command holding a/an {in_hand.name}")
                 # If command Pickup obj in seen objs
                 temp = seen_objs
                 for _obj in seen_objs:
@@ -230,12 +231,14 @@ class Plan:
                 # picked up obj has no recep info now
                 in_hand.put(None)
             elif action[0] == 'SliceObject':
-                assert 'knife' in in_hand.name.lower()
+                if 'knife' not in in_hand.name.lower():
+                    raise Exception(f"Error: [Slice] command not holding a knife")
                 obj = AlfredObject(action[1], recep=action[2])
                 obj.slice()
                 seen_objs.append(obj)
             elif action[0] == 'PutObject':
-                assert action[1] == in_hand.name
+                if action[1] != in_hand.name:
+                    raise Exception(f"Error: [Put] command requesting {action[1]} != {in_hand.name}")
                 in_hand.put(action[2])
                 seen_objs.append(in_hand)
                 in_hand = None
@@ -243,7 +246,8 @@ class Plan:
                 if in_hand is not None:
                     in_hand.examine()
             elif action[0] == 'HeatObject':
-                assert action[1] == in_hand.name or action[1] == ""
+                if action[1] != in_hand.name and action[1] != "":
+                    raise Exception(f"Error: [Heat] command requesting {action[1]} != {in_hand.name}")
                 in_hand.heat()
             elif action[0] == 'CoolObject':
                 if action[1] == in_hand.name:
@@ -255,7 +259,8 @@ class Plan:
                 else:
                     raise Exception('Cool object not specified')
             elif action[0] == 'CleanObject':
-                assert action[1] == in_hand.name or action[1] == ""
+                if action[1] != in_hand.name and action[1] != "":
+                    raise Exception(f"Error: [Clean] command requesting {action[1]} != {in_hand.name}")
                 in_hand.wash()
             else:
                 raise Exception('Action not defined')
@@ -319,12 +324,14 @@ class Plan:
             desc += f"{i+1}. {action[0].replace('Object', ''):8s} {action[1]} {action[2]}\n"
         return desc
 
-    def is_executable(self) -> bool:
+    def is_executable(self, verbose=False) -> bool:
         """Check if plan is executable"""
         try:
             self.get_final_state()
             return True
-        except:
+        except Exception as e:
+            if verbose:
+                print(e)
             return False
 
     def is_plan_fulfilled(self, task_type:str, params:dict) -> bool:

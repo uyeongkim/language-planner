@@ -62,16 +62,19 @@ def main(args):
                 print('\n'+'-'*30+'\n')
             continue
         
-        # just the first one
-        best_plan = executable_plans[0]
-        best_plan.high_desc = goal
+        if args.max:
+            suc = any([plan.is_plan_fulfilled(task_type, pddl_param) for plan in executable_plans])
+        else:
+            # just the first one
+            best_plan = executable_plans[0]
+            best_plan.high_desc = goal
+            suc = best_plan.is_plan_fulfilled(task_type, pddl_param)
         
-        suc = best_plan.is_plan_fulfilled(task_type, pddl_param)
-                
         if not suc and args.verbose:
             print(cc, ':', end=' ')
             print(goal)
-            pp.pprint(best_plan.high_actions)
+            if not args.max:
+                pp.pprint(best_plan.high_actions)
             print('\n'+task_type)
             pp.pprint(pddl_param)
             print('Failure')
@@ -87,6 +90,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('eval_file', type=str)
+    parser.add_argument('--max', action='store_true')
     parser.add_argument('--verbose', action='store_true')
     
     args = parser.parse_args()
