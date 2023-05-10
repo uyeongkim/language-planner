@@ -115,11 +115,12 @@ def main_2(args):
                     plan = Plan(triplets=plan_data[goal]['plan'][0], ignore_exception=True)
                     
                     low_actions = plan.get_low_actions()
+                    seen_objs = [o for o in list(np.unique(np.array(low_actions)[:, 1])) if o != '']
                     result_dict[goal] =  OrderedDict({
                         "root": os.path.join(root, ep, trial, 'traj_data.json'),
                         "low_actions": list(np.array(low_actions)[:, 0]),
                         "low_classes": list(np.array(low_actions)[:, 1]),
-                        "seen_objs": list(np.unique(np.array(low_actions)))
+                        "seen_objs": seen_objs
                     })
                     cnt += 1
                     err_cnt += 1
@@ -139,12 +140,27 @@ def main_2(args):
                 suc = best_plan.is_plan_fulfilled(task_type, pddl_param)
 
                 low_actions = best_plan.get_low_actions()
+                seen_objs = []
+                for obj in best_plan.get_final_state():
+                    seen_objs.append(obj.name)
+                    
+                for obj in best_plan.get_final_state():
+                    if obj.recep is not None and obj.recep not in seen_objs:
+                        seen_objs.append(obj.recep)
+                    if obj.in_light:
+                        for o in list(np.array(low_actions)[:, 1]):
+                            if 'lamp' in o.lower():
+                                lamp = o
+                                break
+                        seen_objs.append(lamp)
+                    if obj.sliced:
+                        seen_objs.append(obj.name + 'Sliced')
+                        
                 result_dict[goal] =  OrderedDict({
                     "root": os.path.join(root, ep, trial, 'traj_data.json'),
                     "low_actions": list(np.array(low_actions)[:, 0]),
                     "low_classes": list(np.array(low_actions)[:, 1]),
-                    "seen_objs": [obj.name for obj in best_plan.get_final_state()] \
-                        + [obj.recep for obj in best_plan.get_final_state() if obj.recep is not None]
+                    "seen_objs": list(seen_objs)
                 })
                 
                 if not suc and args.verbose:
