@@ -18,7 +18,7 @@ class Plan:
     HIGH_INTERACT_ACTIONS = \
         ['HeatObject', 'CoolObject', 'CleanObject', 'ToggleObject', 'SliceObject']
     HIGH_ACTIONS = ['PickupObject', 'PutObject', 'HeatObject', 'CleanObject', 'CleanObject', 'ToggleObject', 'SliceObject']
-    def __init__(self, high_desc=None, low_desc=None, triplets=None, low_actions=None, refine=False):
+    def __init__(self, high_desc=None, low_desc=None, triplets=None, low_actions=None, refine=False, ignore_exception=False):
         # check triplet validity
         for action_idx, high_action in enumerate(triplets):
             if high_action[0] in Plan.HIGH_INTERACT_ACTIONS:
@@ -29,9 +29,11 @@ class Plan:
                 if high_action[1] not in \
                     constants.VAL_ACTION_OBJECTS[
                         ['Heatable', 'Coolable', 'Cleanable', 'Toggleable', 'Sliceable'][Plan.HIGH_INTERACT_ACTIONS.index(high_action[0])]]:
-                    raise Exception(f"{high_action[1]} is not {high_action[0]}-able.")
+                    if not ignore_exception:
+                        raise Exception(f"{high_action[1]} is not {high_action[0]}-able.")
             if high_action[2] not in constants.RECEPTACLES | {'0', '', 'FloorLamp', 'DeskLamp'}:
-                raise Exception(f'{high_action[2]} can\'t be in third pos')
+                if not ignore_exception:
+                    raise Exception(f'{high_action[2]} can\'t be in third pos')
             if high_action[0] == 'PutObject':
                 # change (Put, recep, recep) to (Put, obj, recep)
                 if high_action[1] in constants.RECEPTACLES and (high_action[1] == high_action[2] or high_action[2] == '0'):
@@ -39,7 +41,6 @@ class Plan:
                         new_action = ['PutObject', triplets[action_idx-2][1], high_action[1]]
                     else:
                         new_action = ['PutObject', triplets[action_idx-1][1], high_action[1]]
-                    # print(f'{high_action} -> {new_action}')
                     high_action = new_action
                 triplets[action_idx] = high_action
             triplets[action_idx] = [high_action[0], high_action[1].split('Sliced')[0], high_action[2]]
@@ -190,6 +191,9 @@ class Plan:
         return ' '.join(processed).lower().replace('.', '')
         
     def refine_plan(self):
+        """
+        Refill receptacle info in triplet refering high actions
+        """
         triplets = self.high_actions
         for i, triplet in enumerate(triplets):
             if triplet[2] == '':
@@ -375,6 +379,107 @@ class Plan:
                 or not any([t.recep == params['mrecep_target'] for t in target]):
                 return False
         return True
+    
+    def get_low_actions(self):
+        if self.low_actions is not None:
+            return self.low_actions
+        low_actions = []
+        
+        s_idx = len(self.high_actions)
+        s_obj = ""
+        pre_opened = False
+        for t_idx, triplet in enumerate(self.high_actions):
+            action, target, recep = triplet
+            if s_idx < t_idx and s_obj == target:
+                target = target+"Sliced"
+            
+            if action == "SliceObject":
+                s_idx = t_idx
+                s_obj = target
+            
+            # transfer to low actions
+            if action == "PutObject":
+                # slice initialize
+                if s_obj+'Sliced' == target:
+                    s_idx = len(self.high_actions)
+                # mrecep task recep yield
+                if t_idx < len(self.high_actions)-1 and self.high_actions[t_idx+1][0] == "PickupObject" \
+                    and self.high_actions[t_idx+1][1] == recep \
+                        and self.high_actions[t_idx+1][2] in constants.OPENABLE_CLASS_SET-{'Box'}:
+                    _low_actions = [
+                        ["GotoLocation", self.high_actions[t_idx+1][2]],
+                        ["OpenObject", self.high_actions[t_idx+1][2]],
+                        ["PutObject", recep]
+                    ]
+                    pre_opened = True
+                    
+                elif recep in constants.OPENABLE_CLASS_SET-{'Box'}:
+                    _low_actions = [
+                        ["GotoLocation", recep],
+                        ["OpenObject", recep],
+                        ["PutObject", recep],
+                        ["CloseObject", recep]
+                    ]
+                else:
+                    _low_actions = [
+                        ["GotoLocation", recep],
+                        ["PutObject", recep],
+                    ]
+            elif action == "HeatObject":
+                _low_actions = [
+                    ["GotoLocation", "Microwave"],
+                    ["OpenObject", "Microwave"],
+                    ["PutObject", "Microwave"],
+                    ["CloseObject", "Microwave"],
+                    ["ToggleObjectOn", "Microwave"],
+                    ["ToggleObjectOff", "Microwave"],
+                    ["OpenObject", "Microwave"],
+                    ["PickupObject", target]
+                ]
+            elif action == "CoolObject":
+                _low_actions = [
+                    ["GotoLocation", "Fridge"],
+                    ["OpenObject", "Fridge"],
+                    ["PutObject", "Fridge"],
+                    ["CloseObject", "Fridge"],
+                    ["OpenObject", "Fridge"],
+                    ["PickupObject", target]
+                ]
+            elif action == "CleanObject":
+                _low_actions = [
+                    ["GotoLocation", "SinkBasin"],
+                    ["PutObject", "SinkBasin"],
+                    ["ToggleObjectOn", "Faucet"],
+                    ["ToggleObjectOff", "Faucet"],
+                    ["PickupObject", target]
+                ]
+            elif action == "ToggleObject":
+                _low_actions = [
+                    ["GotoLocation", target],
+                    ["ToggleObjectOn", target]
+                ]
+            else:
+                if recep in constants.OPENABLE_CLASS_SET-{'Box'}:
+                    if pre_opened:
+                        _low_actions = [
+                            [action, target],
+                            ["CloseObject", recep]
+                        ]
+                        pre_opened = False
+                    else:
+                        _low_actions = [
+                            ["GotoLocation", recep],
+                            ["OpenObject", recep],
+                            [action, target],
+                            ["CloseObject", recep]]
+                else:
+                    _low_actions = [
+                        ["GotoLocation", target],
+                        [action, target]
+                    ]
+            low_actions.extend(_low_actions)
+        self.low_actions = low_actions
+        return low_actions
 
 class AlfredObject:
     """Object in alfred saving status information"""

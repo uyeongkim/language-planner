@@ -1,6 +1,7 @@
 """
 Useful functions dealing with plans
 """
+
 import re
 import json
 from multiprocessing import Pool, Value, Queue, Process
@@ -328,113 +329,113 @@ def compare_plan(plan1, plan2):
                     s1.remove(o1)
     return len(s1) == 0
 
-def get_final_state(plan):
-    in_hand = None
-    seen_objs = []
-    for i, action in enumerate(plan):
-        if action[0] == 'PickupObject':
-            assert in_hand == None
-            temp = seen_objs
-            for o in seen_objs:
-                if o.name == action[1] and (o.recep == action[2] or (o.recep == None and action[2] == '')):
-                    in_hand = o
-                    temp.remove(o)
-            seen_objs = temp
-            if in_hand == None:
-                in_hand = AlfredObject(action[1])
-            in_hand.put(None)
-        elif action[0] == 'SliceObject':
-            assert 'knife' in in_hand.name.lower()
-            obj = AlfredObject(action[1], recep=action[2])
-            obj.slice()
-            seen_objs.append(obj)
-        elif action[0] == 'PutObject':
-            assert action[1] == in_hand.name
-            in_hand.put(action[2])
-            seen_objs.append(in_hand)
-            in_hand = None
-        elif action[0] == 'ToggleObject':
-            if 'lamp' in action[1].lower() and in_hand != None:
-                raise Exception("Toggle object")
-            in_hand.examine()
-        elif action[0] == 'HeatObject':
-            assert action[1] == in_hand.name or action[1] == ""
-            in_hand.heat()
-        elif action[0] == 'CoolObject':
-            assert action[1] == in_hand.name or action[1] == ""
-            in_hand.cool()
-        elif action[0] == 'CleanObject':
-            assert action[1] == in_hand.name or action[1] == ""
-            in_hand.wash()
-        else:
-            raise Exception('Action not defined')
+# def get_final_state(plan):
+#     in_hand = None
+#     seen_objs = []
+#     for i, action in enumerate(plan):
+#         if action[0] == 'PickupObject':
+#             assert in_hand == None
+#             temp = seen_objs
+#             for o in seen_objs:
+#                 if o.name == action[1] and (o.recep == action[2] or (o.recep == None and action[2] == '')):
+#                     in_hand = o
+#                     temp.remove(o)
+#             seen_objs = temp
+#             if in_hand == None:
+#                 in_hand = AlfredObject(action[1])
+#             in_hand.put(None)
+#         elif action[0] == 'SliceObject':
+#             assert 'knife' in in_hand.name.lower()
+#             obj = AlfredObject(action[1], recep=action[2])
+#             obj.slice()
+#             seen_objs.append(obj)
+#         elif action[0] == 'PutObject':
+#             assert action[1] == in_hand.name
+#             in_hand.put(action[2])
+#             seen_objs.append(in_hand)
+#             in_hand = None
+#         elif action[0] == 'ToggleObject':
+#             if 'lamp' in action[1].lower() and in_hand != None:
+#                 raise Exception("Toggle object")
+#             in_hand.examine()
+#         elif action[0] == 'HeatObject':
+#             assert action[1] == in_hand.name or action[1] == ""
+#             in_hand.heat()
+#         elif action[0] == 'CoolObject':
+#             assert action[1] == in_hand.name or action[1] == ""
+#             in_hand.cool()
+#         elif action[0] == 'CleanObject':
+#             assert action[1] == in_hand.name or action[1] == ""
+#             in_hand.wash()
+#         else:
+#             raise Exception('Action not defined')
 
-        # print("Action %s"%action)
-        # for o in seen_objs:
-        #     print(o)
-        # print(" - in hand \n%s\n - "%in_hand)
-        # print('-'*20)
+#         # print("Action %s"%action)
+#         # for o in seen_objs:
+#         #     print(o)
+#         # print(" - in hand \n%s\n - "%in_hand)
+#         # print('-'*20)
 
-    if in_hand != None:
-        seen_objs.append(in_hand)
+#     if in_hand != None:
+#         seen_objs.append(in_hand)
 
-    # print("Final")
-    # for o in seen_objs:
-    #     print(o)
-    # print(" - in hand \n%s\n - "%in_hand)
-    # print('-'*20)
+#     # print("Final")
+#     # for o in seen_objs:
+#     #     print(o)
+#     # print(" - in hand \n%s\n - "%in_hand)
+#     # print('-'*20)
 
-    return seen_objs
+#     return seen_objs
 
-def is_plan_successful(traj_data, plan) -> bool:
-    """
-    Args:
-        traj_data(dict)
-        plan(list)
-    Returns:
-        success(bool)
-    """
-    seen_objs = get_final_state(plan)
-    task_type = traj_data['task_type']
-    pddl_param = traj_data['pddl_params']
-    return _met_task_conditions(task_type, pddl_param, seen_objs)
+# def is_plan_successful(traj_data, plan) -> bool:
+#     """
+#     Args:
+#         traj_data(dict)
+#         plan(list)
+#     Returns:
+#         success(bool)
+#     """
+#     seen_objs = get_final_state(plan)
+#     task_type = traj_data['task_type']
+#     pddl_param = traj_data['pddl_params']
+#     return _met_task_conditions(task_type, pddl_param, seen_objs)
 
-def _met_task_conditions(task_type, params, objs):
-    mrecep, target = [], []
-    for o in objs:
-        if o.name == params['mrecep_target']:
-            mrecep.append(o)
-        if o.name == params['object_target']:
-            target.append(o)
+# def _met_task_conditions(task_type, params, objs):
+#     mrecep, target = [], []
+#     for o in objs:
+#         if o.name == params['mrecep_target']:
+#             mrecep.append(o)
+#         if o.name == params['object_target']:
+#             target.append(o)
 
-    if params['object_sliced'] and not any([t.sliced for t in target]):
-        return False
-    if task_type == 'pick_and_place_simple'\
-         and not any([t.recep == params['parent_target'] for t in target]):
-        return False
-    if task_type == 'pick_two_obj_and_place'\
-         and not len([t.recep == params['parent_target'] for t in target]) > 1:
-        return False
-    if task_type == 'look_at_obj_in_light'\
-        and not any([t.in_light for t in target]):
-        return False
-    if task_type == 'pick_clean_then_place_in_recep'\
-        and not any([t.clean for t in target])\
-             and not any([t.recep == params['parent_target'] for t in target]):
-        return False
-    if task_type == 'pick_heat_then_place_in_recep'\
-        and not any([t.hot for t in target])\
-             and not any([t.recep == params['parent_target'] for t in target]):
-        return False
-    if task_type == 'pick_cool_then_place_in_recep'\
-        and not any([t.cold for t in target])\
-             and not any([t.recep == params['parent_target'] for t in target]):
-        return False
-    if task_type == 'pick_and_place_with_movable_recep'\
-        and not any([m.recep == params['parent_target'] for m in mrecep])\
-             and not any([t.recep == params['mrecep_target'] for t in target]):
-        return False
-    return True
+#     if params['object_sliced'] and not any([t.sliced for t in target]):
+#         return False
+#     if task_type == 'pick_and_place_simple'\
+#          and not any([t.recep == params['parent_target'] for t in target]):
+#         return False
+#     if task_type == 'pick_two_obj_and_place'\
+#          and not len([t.recep == params['parent_target'] for t in target]) > 1:
+#         return False
+#     if task_type == 'look_at_obj_in_light'\
+#         and not any([t.in_light for t in target]):
+#         return False
+#     if task_type == 'pick_clean_then_place_in_recep'\
+#         and not any([t.clean for t in target])\
+#              and not any([t.recep == params['parent_target'] for t in target]):
+#         return False
+#     if task_type == 'pick_heat_then_place_in_recep'\
+#         and not any([t.hot for t in target])\
+#              and not any([t.recep == params['parent_target'] for t in target]):
+#         return False
+#     if task_type == 'pick_cool_then_place_in_recep'\
+#         and not any([t.cold for t in target])\
+#              and not any([t.recep == params['parent_target'] for t in target]):
+#         return False
+#     if task_type == 'pick_and_place_with_movable_recep'\
+#         and not any([m.recep == params['parent_target'] for m in mrecep])\
+#              and not any([t.recep == params['mrecep_target'] for t in target]):
+#         return False
+#     return True
 
 class AlfredObject:
     from data.alfred_data import constants

@@ -4,6 +4,9 @@ import pickle
 import os
 import pprint
 import argparse
+from collections import OrderedDict
+import numpy as np
+from tqdm import tqdm
 
 def find_executable_plan(plans:list):
     """
@@ -87,6 +90,78 @@ def main(args):
     print(f"Success rate: {suc_cnt} / {cnt} : {(suc_cnt/cnt)*100:.2f}")
     print(f"Error rate : {err_cnt} / {cnt} : {(err_cnt/cnt)*100:.2f}")
     
+def main_2(args):
+    pp = pprint.PrettyPrinter()
+    plan_data = pickle.load(open(args.eval_file, 'rb'))
+    split = 'valid_unseen' if 'valid_unseen' in args.eval_file else 'valid_seen'
+    root = f'data/alfred_data/json_2.1.0/{split}'
+    result_file = f"result/{args.eval_file.split('/')[2]}/{args.eval_file.split('/')[3]}/{split}.p"
+    os.makedirs(os.path.dirname(result_file), exist_ok=True)
+    print("Result file: ", result_file)
+    
+    result_dict = OrderedDict()
+    cnt, suc_cnt, err_cnt = 0, 0, 0
+    for ep in tqdm(os.listdir(root)):
+        for trial in os.listdir(os.path.join(root, ep)):
+            traj_data = json.load(open(os.path.join(root, ep, trial, 'traj_data.json'), 'r'))
+            task_type = traj_data['task_type']
+            pddl_param = traj_data['pddl_params']
+            
+            goals = [ann['task_desc'] for ann in traj_data['turk_annotations']['anns']]
+            for goal in goals:
+                executable_plans = find_executable_plan(plan_data[goal]['plan'])
+                # no executable plans
+                if len(executable_plans) == 0:
+                    plan = Plan(triplets=plan_data[goal]['plan'][0], ignore_exception=True)
+                    
+                    low_actions = plan.get_low_actions()
+                    result_dict[goal] =  OrderedDict({
+                        "root": os.path.join(root, ep, trial, 'traj_data.json'),
+                        "low_actions": list(np.array(low_actions)[:, 0]),
+                        "low_classes": list(np.array(low_actions)[:, 1]),
+                        "seen_objs": list(np.unique(np.array(low_actions)))
+                    })
+                    cnt += 1
+                    err_cnt += 1
+                    if args.verbose:
+                        print(cnt+1, ':', end=' ')
+                        print(goal)
+                        print('No executable plans')
+                        pp.pprint(plan_data[goal]['plan'])
+                        print('\n'+task_type)
+                        pp.pprint(pddl_param)
+                        print('\n'+'-'*30+'\n')
+                    continue
+                
+                # just pick the first one
+                best_plan = executable_plans[0]
+                best_plan.high_desc = goal
+                suc = best_plan.is_plan_fulfilled(task_type, pddl_param)
+
+                low_actions = best_plan.get_low_actions()
+                result_dict[goal] =  OrderedDict({
+                    "root": os.path.join(root, ep, trial, 'traj_data.json'),
+                    "low_actions": list(np.array(low_actions)[:, 0]),
+                    "low_classes": list(np.array(low_actions)[:, 1]),
+                    "seen_objs": [obj.name for obj in best_plan.get_final_state()] \
+                        + [obj.recep for obj in best_plan.get_final_state() if obj.recep is not None]
+                })
+                
+                if not suc and args.verbose:
+                    print(cnt+1, ':', end=' ')
+                    print(goal)
+                    if not args.max:
+                        pp.pprint(best_plan.high_actions)
+                    print('\n'+task_type)
+                    pp.pprint(pddl_param)
+                    print('Failure')
+                    print('\n'+'-'*30+'\n')
+                else:
+                    suc_cnt += 1
+                cnt += 1
+                
+    pickle.dump(result_dict, open(result_file, 'wb'))
+    
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('eval_file', type=str)
@@ -95,4 +170,4 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
     print(f"Eval file: {args.eval_file}")
-    main(args)
+    main_2(args)
