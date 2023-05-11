@@ -15,3 +15,5 @@ utils/config.py
 confusion/*
 images/*
 *.zip
+make_csv.py
+*.csv

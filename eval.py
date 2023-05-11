@@ -108,18 +108,22 @@ def main_2(args):
             pddl_param = traj_data['pddl_params']
             
             goals = [ann['task_desc'] for ann in traj_data['turk_annotations']['anns']]
-            for goal in goals:
+            for g_idx, goal in enumerate(goals):
                 executable_plans = find_executable_plan(plan_data[goal]['plan'])
                 # no executable plans
                 if len(executable_plans) == 0:
                     plan = Plan(triplets=plan_data[goal]['plan'][0], ignore_exception=True)
                     
-                    low_actions = plan.get_low_actions()
+                    high_idxs, low_actions = plan.get_low_actions()
                     seen_objs = [o for o in list(np.unique(np.array(low_actions)[:, 1])) if o != '']
                     result_dict[goal] =  OrderedDict({
                         "root": os.path.join(root, ep, trial, 'traj_data.json'),
+                        "instr_natural": traj_data['turk_annotations']['anns'][g_idx]['high_descs'],
+                        "lan_triplet": plan.high_actions,
+                        "triplet": plan.get_ex_high(),
                         "low_actions": list(np.array(low_actions)[:, 0]),
                         "low_classes": list(np.array(low_actions)[:, 1]),
+                        "high_idxs": high_idxs,
                         "seen_objs": seen_objs
                     })
                     cnt += 1
@@ -139,7 +143,7 @@ def main_2(args):
                 best_plan.high_desc = goal
                 suc = best_plan.is_plan_fulfilled(task_type, pddl_param)
 
-                low_actions = best_plan.get_low_actions()
+                high_idxs, low_actions = best_plan.get_low_actions()
                 seen_objs = []
                 for obj in best_plan.get_final_state():
                     seen_objs.append(obj.name)
@@ -158,8 +162,12 @@ def main_2(args):
                         
                 result_dict[goal] =  OrderedDict({
                     "root": os.path.join(root, ep, trial, 'traj_data.json'),
+                    "instr_natural": traj_data['turk_annotations']['anns'][g_idx]['high_descs'],
+                    "lan_triplet": best_plan.high_actions,
+                    "triplet": best_plan.get_ex_high(),
                     "low_actions": list(np.array(low_actions)[:, 0]),
                     "low_classes": list(np.array(low_actions)[:, 1]),
+                    "high_idxs": high_idxs,
                     "seen_objs": list(seen_objs)
                 })
                 

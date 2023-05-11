@@ -273,6 +273,25 @@ class Plan:
             seen_objs.append(in_hand)
 
         return seen_objs
+    
+    def get_ex_high(self):
+        s_idx = len(self.high_actions)
+        s_obj = ""
+        ex_high_actions = []
+        for t_idx, triplet in enumerate(self.high_actions):
+            action, target, recep = triplet
+            if s_idx < t_idx and s_obj == target:
+                target = target+"Sliced"
+            
+            if action == 'SliceObject':
+                s_idx = t_idx
+                s_obj = target
+            elif action == 'PutObject' and target == s_obj:
+                s_idx = len(self.high_actions)
+                s_obj = ""
+            
+            ex_high_actions.append([action, target, recep])
+        return ex_high_actions
 
     def __eq__(self, other_plan):
         if not self.is_executable() or not other_plan.is_executable():
@@ -384,6 +403,7 @@ class Plan:
         if self.low_actions is not None:
             return self.low_actions
         low_actions = []
+        high_idxs = []
         
         s_idx = len(self.high_actions)
         s_obj = ""
@@ -477,9 +497,10 @@ class Plan:
                         ["GotoLocation", target],
                         [action, target]
                     ]
+            high_idxs.extend([t_idx]*len(_low_actions))
             low_actions.extend(_low_actions)
         self.low_actions = low_actions
-        return low_actions
+        return high_idxs, low_actions
 
 class AlfredObject:
     """Object in alfred saving status information"""
