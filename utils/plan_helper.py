@@ -1,7 +1,7 @@
 """
 Useful functions dealing with plans
 """
-
+import yaml
 import re
 import json
 from multiprocessing import Pool, Value, Queue, Process
@@ -13,14 +13,15 @@ from tqdm import tqdm
 from sentence_transformers import SentenceTransformer
 from sentence_transformers import util as st_utils
 import openai
-from utils import config
 from data.alfred_data import constants
-
-openai.api_key = config.OPENAI['api_key']
-openai.organization = config.OPENAI['organization']
 
 HIGH_ACTIONS = [''] + ['PickupObject', 'PutObject', 'HeatObject', 'CleanObject', 'CoolObject', 'ToggleObject', 'SliceObject']
 OBJS = [''] + constants.OBJECTS
+
+def set_openai_key():
+    cfg = yaml.load(open('utils/config.yaml', 'r'), Loader=yaml.FullLoader)
+    openai.api_key = config['openai']['api_key']
+    openai.organization = config['openai']['organization']
 
 def count_plans(plans) -> int:
     """
@@ -56,6 +57,8 @@ def decode_plans(plans) -> list:
     for i in range(plans.shape[0]):
         list_plan = []
         for j in range(plans.shape[1]):
+            if plans[i, j, 0] == -1:
+                break
             np_triplet = plans[i][j]
             list_plan.append([
                 HIGH_ACTIONS[np_triplet[0]],
@@ -111,7 +114,7 @@ def gptResponseToAlfredPlan(sentence, gpu_num=0):
         action = re.sub(r"[0-9]", "", action).strip('. ').lower()
         most_similar_task, score = closest_object_roberta(action, available_tasks, gpu_num)
         action_seq.append(available_actions[most_similar_task])
-        cos_score.append(float(score))
+        cos_score.append(score)
     # Remove repititive subgoals
     temp = []
     for i, action in enumerate(action_seq):
@@ -119,7 +122,7 @@ def gptResponseToAlfredPlan(sentence, gpu_num=0):
             continue
         temp.append(action)
     action_seq = temp
-    return action_seq, cos_score
+    return encode_plans([action_seq])[0], np.array(cos_score)
 
 def preprocess_goal(s):
     # remove escape sequence

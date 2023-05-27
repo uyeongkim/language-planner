@@ -11,9 +11,9 @@ data/*
 *.pyc
 */__pycache__/*
 *.pkl
-utils/config.py
 confusion/*
 images/*
 *.zip
 make_csv.py
 *.csv
+utils/config.yaml

@@ -1,4 +1,3 @@
-from utils.plan_module import Plan
 import json
 import pickle
 import os
@@ -7,11 +6,11 @@ import argparse
 from collections import OrderedDict
 import numpy as np
 from tqdm import tqdm
+from utils.plan_module import Plan
 
 def find_executable_plan(plans:list):
     """
     choose plan with most vosts from executables
-
     Args:
         plans (list): triplet plans
     """
@@ -117,7 +116,7 @@ def main_2(args):
                     high_idxs, low_actions = plan.get_low_actions()
                     seen_objs = [o for o in list(np.unique(np.array(low_actions)[:, 1])) if o != '']
                     result_dict[goal] =  OrderedDict({
-                        "root": os.path.join(root, ep, trial, 'traj_data.json'),
+                        "root": os.path.join(data, ep, trial, 'traj_data.json'),
                         "instr_natural": traj_data['turk_annotations']['anns'][g_idx]['high_descs'],
                         "lan_triplet": plan.high_actions,
                         "triplet": plan.get_ex_high(),

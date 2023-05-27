@@ -570,16 +570,16 @@ class AlfredObject:
         assert self.name in AlfredObject.val_action_objects['Sliceable']
         self.sliced = True
 
-###
-# util functions
 import openai
-from utils import config
-
-openai.api_key = config.OPENAI['api_key']
-openai.organization = config.OPENAI['organization']
+import yaml
+def set_openai_key():
+    config = yaml.load(open('utils/config.yaml', 'r'), Loader=yaml.FullLoader)
+    openai.api_key = config['openai']['api_key']
+    openai.organization = config['openai']['organization']
 
 def get_gpt_response(prompt, args):
     """ Get gpt3 response"""
+    set_openai_key()
     while True:
         try:
             response = openai.Completion.create(
